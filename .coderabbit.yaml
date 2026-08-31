@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+# Repository-level CodeRabbit settings for this prompt-writing skill.
+language: "ko-KR"
+
+reviews:
+  profile: "chill"
+  high_level_summary: true
+  review_status: true
+  review_details: true
+  in_progress_fortune: false
+  poem: false
+  auto_review:
+    enabled: true
+    drafts: false
+  path_instructions:
+    - path: "SKILL.md"
+      instructions: |
+        Review this as a Codex skill entrypoint. Check that the instructions are
+        actionable, preserve user intent, distinguish T2V from I2V behavior,
+        avoid unsupported Wan-version claims, and route detailed guidance to
+        the referenced files without duplicating or contradicting it.
+    - path: "references/**/*.md"
+      instructions: |
+        Review this as maintained prompt-engineering reference material. Check
+        for consistency with the Wan 3.0 source guide, clear mode boundaries,
+        technically plausible camera and motion guidance, and examples that do
+        not silently introduce unrelated subjects or unsafe guarantees.
+    - path: "agents/openai.yaml"
+      instructions: |
+        Check that the UI metadata is valid YAML, the skill name is consistent,
+        and the default prompt invokes the correct skill identifier.
+
+chat:
+  auto_reply: true
