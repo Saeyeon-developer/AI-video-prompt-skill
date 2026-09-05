@@ -1,0 +1,3 @@
+# Local audit notes and source archives are not part of the repository release.
+/AUDIT*
+/Base*/

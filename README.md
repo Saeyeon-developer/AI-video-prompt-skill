@@ -1,194 +1,33 @@
-# Wan 3.0 Prompt Writing Skill
+# AI Video Prompt Skills
 
-Turn rough video ideas into clear, copy-ready prompts that Wan 3.0 can execute more reliably.
+영상 생성 모델별로 장면 의도를 실행 가능한 프롬프트로 구체화하는 세 가지 독립형 커뮤니티 스킬 모음입니다. 프롬프트 텍스트를 작성하며, 영상 생성 서비스나 API를 직접 조작하지 않습니다.
 
-Describe the core of a scene in natural language. This skill preserves your intent while organizing the subject, setting, motion, camera, lighting, lens, visual style, and optional audio into a coherent video-generation prompt.
+Three self-contained community skills for turning creative intent into model-specific video prompts. They author prompt text; they do not operate generation services or APIs.
 
-> This repository provides prompt-writing instructions. It does not call the Wan API or generate, edit, or render video.
-
-## Features
-
-| Feature | What it does |
-| --- | --- |
-| Rough-idea expansion | Develops short or vague concepts into concrete motion and shot direction. |
-| Text-to-Video | Builds T2V prompts around `entity + scene + motion + aesthetic control + stylization`. |
-| Image-to-Video | Focuses on motion and camera behavior instead of redundantly describing the source image. |
-| First/last-frame animation | Designs a continuous, physically plausible transition between supplied frames. |
-| Multiple references | Preserves user-provided image and video identifiers and binds each action to the correct reference. |
-| Motion design | Expresses direction, speed, intensity, causality, and a readable end state. |
-| Camera and aesthetics | Combines shot size, angle, lens, composition, lighting, color, and movement without conflicts. |
-| Dialogue and audio | Structures speakers, lines, voice qualities, sound effects, and background music when supported. |
-| Prompt repair | Simplifies static, overlong, contradictory, or overloaded video descriptions. |
-| Reliability checks | Verifies intent, continuity, identity, motion readability, model limitations, and interface syntax. |
+| 모델 / Model | 스킬 / Skill | 안내 / Guide |
+| --- | --- | --- |
+| MiniMax H3 | `h3-prompt-writing` | [한국어·English](h3-prompt-writing/Readme.md) |
+| Seedance 2.5 | `sd25-pe` | [한국어·English](sd25-pe/Readme.md) |
+| Wan 3.0 | `wan3-prompt-writing` | [한국어·English](wan3-prompt-writing/Readme.md) |
 
 ## Quick start
 
-Invoke the skill explicitly in Codex:
+1. 원하는 스킬 폴더 전체를 프로젝트의 `.agents/skills/` 아래에 복사합니다. 개인 공용 설치 경로는 `~/.agents/skills/`입니다.
+2. Codex에서 `$h3-prompt-writing`, `$sd25-pe`, `$wan3-prompt-writing` 중 하나와 장면 설명을 입력합니다.
+3. 반환된 프롬프트를 대상 영상 생성 서비스에 전달하고, 출력 설정과 참조 파일은 해당 서비스에서 연결합니다.
 
-```text
-$wan3-prompt-writing A tired office worker closes his umbrella and enters a convenience store on a rainy night. Make it an 8-second, lonely cinematic shot.
-```
+Copy the chosen folder into a [Codex skill discovery location](https://learn.chatgpt.com/docs/build-skills), then invoke its `$skill-name`. Other agents can read the folder's `SKILL.md` and load only the relevant reference files. Each package is self-contained.
 
-By default, the skill returns a `Wan 3.0 prompt` heading followed by a copy-ready English prompt. Quoted dialogue stays in the requested spoken language. Ask for another language, multiple variants, or prompt-only output when needed.
+## Package layout
 
-Codex may also select the skill automatically when the request matches its description. Use `$wan3-prompt-writing` when you want to guarantee explicit invocation.
+Each skill folder contains its `SKILL.md` entrypoint, conditional writing references, examples, optional Codex UI metadata, and a bilingual `Readme.md`:
 
-```text
-$wan3-prompt-writing Create a 6-second luxury product shot of a black perfume bottle rotating slowly. Keep the camera fixed. Return only the prompt.
-```
+- `h3-prompt-writing`: T2VA, I2VA, FL2VA, L2VA, and Ref2VA prompts for MiniMax H3.
+- `sd25-pe`: Seedance 2.5 prompts for scenes, references, keyframes, storyboards, edits, and extensions.
+- `wan3-prompt-writing`: Wan 3.0 prompts for text-to-video, image-to-video, references, sound, and multi-shot narratives.
 
-## Installation
+## Scope and release status
 
-### Windows PowerShell
+각 패키지의 `references/sources.md`에 참고 자료와 자체 작성 규칙을 구분해 기록했습니다. 이 저장소는 공급사의 공식 배포판이나 영상 품질·동기화 성능 인증을 의미하지 않습니다.
 
-```powershell
-$skillHome = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $env:USERPROFILE ".codex" }
-New-Item -ItemType Directory -Force -Path (Join-Path $skillHome "skills") | Out-Null
-git clone https://github.com/Saeyeon-developer/Wan3.0_prompt_writer.git (Join-Path $skillHome "skills\wan3-prompt-writing")
-```
-
-### macOS or Linux
-
-```bash
-mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-git clone https://github.com/Saeyeon-developer/Wan3.0_prompt_writer.git "${CODEX_HOME:-$HOME/.codex}/skills/wan3-prompt-writing"
-```
-
-Using `wan3-prompt-writing` as the installation directory keeps the folder name aligned with the skill name. If the skill is already installed, update it with `git pull` from that directory.
-
-## Usage
-
-### 1. Text-to-Video
-
-Use T2V when the scene must be created from scratch. A subject and action are enough to start, but the following details provide more control:
-
-- video duration;
-- subject identity and count;
-- setting and time of day;
-- main action and final state;
-- shot size and camera movement;
-- lighting, color palette, and visual style;
-- dialogue, sound effects, and background music;
-- elements that must be preserved or excluded.
-
-```text
-$wan3-prompt-writing 10-second T2V. On an empty subway platform at dawn, a woman in a red coat watches a train disappear. The camera slowly pulls back. Use a cold, realistic cinematic look.
-```
-
-### 2. Image-to-Video
-
-When an image is attached, it defines the subject, setting, composition, and style. Describe what should change and what must remain stable.
-
-```text
-$wan3-prompt-writing Preserve the attached subject's identity, clothing, background, and lighting. A gentle breeze moves the hair and fabric. The subject blinks once, then looks toward the lens as the camera pushes in very slowly.
-```
-
-### 3. First and last frames
-
-Describe the intended change between the two frames. The skill prioritizes a continuous transition and does not invent a cut between them.
-
-```text
-$wan3-prompt-writing Connect the folded paper flower in the first frame to the fully opened flower in the last frame. Preserve the paper texture. With a fixed camera, the petals unfold slowly from the center outward.
-```
-
-### 4. Multiple speakers and audio
-
-Give every speaker a distinct visual identity, action, voice, and place in the speaking order to reduce dialogue attribution errors.
-
-```text
-$wan3-prompt-writing A detective and a barista exchange one short line each in a quiet café. The detective speaks in a low, controlled voice. After a pause, the barista answers hesitantly and softly. Include a refrigerator hum and distant traffic, with no background music.
-```
-
-### 5. Multi-shot requests
-
-The default is one continuous shot per clip. If the story requires multiple locations or cuts, ask for separate prompts for each clip. Timestamped multi-shot syntax is used only when the selected Wan 3.0 interface is known to support it.
-
-```text
-$wan3-prompt-writing Split the following story into three independent 5-second clip prompts. Preserve the same character appearance and clothing in every clip: ...
-```
-
-See [references/examples.md](./references/examples.md) for complete prompt transformations.
-
-## Prompt design principles
-
-The skill follows these priorities:
-
-1. Preserve the subjects, relationships, actions, setting, style, and constraints explicitly requested by the user.
-2. Give a short clip one readable main event and only the secondary reactions it needs.
-3. Express motion as `initial state → initiating movement → visible reaction → readable end state`, not as a list of unrelated verbs.
-4. Give camera movement one primary narrative purpose and avoid stacking contradictory cinematography terms.
-5. In I2V prompts, prioritize what moves and what remains stable over static visual restatement.
-6. Never invent unsupported parameters, weights, negative-prompt syntax, or reference identifiers.
-
-Detailed mode formulas and camera, motion, dialogue, and audio guidance live in [references/wan3-writing-guide.md](./references/wan3-writing-guide.md).
-
-## Model limitations
-
-The skill does not promise reliable results for:
-
-- recreating a specific real person by name;
-- exact spelling or long readable text inside the generated image;
-- exact word-level lip synchronization;
-- rapid location changes inside a short clip;
-- long, highly choreographed action sequences.
-
-If exact typography or lip synchronization is essential, use a dedicated post-production step after video generation.
-
-## How it was built
-
-The skill uses two source documents with a deliberate priority order:
-
-- **Wan 3.0 prompt guide:** The authoritative source for current prompt formulas, mode selection, motion, camera and aesthetic control, and documented model limitations.
-- **Wan 2.2 system prompt:** A secondary source used only for durable writing heuristics such as preserving user intent, expanding observable motion, prioritizing dynamics in I2V prompts, and maintaining camera consistency.
-
-When the two sources conflict, the Wan 3.0 guide wins. Version-specific Wan 2.2 defaults, fixed language restrictions, and content-replacement rules were intentionally not carried forward.
-
-The package also uses progressive disclosure instead of placing every instruction in one file:
-
-```text
-Wan3.0_prompt_writer/
-├── SKILL.md                         # Skill routing, core workflow, and output contract
-├── agents/
-│   └── openai.yaml                  # Codex UI metadata and default invocation
-├── references/
-│   ├── wan3-writing-guide.md        # Mode formulas, motion, camera, audio, and repair rules
-│   └── examples.md                  # Representative input/output transformations
-├── .coderabbit.yaml                 # Repository review configuration
-└── README.md                        # Usage guide for people and external agents
-```
-
-`SKILL.md` contains only the decision rules needed for every invocation. Detailed guidance and examples are loaded only when the request requires them. The completed package passes Codex's official `quick_validate.py` skill-structure validator.
-
-## Using the repository with other AI agents
-
-This repository can also serve as a prompt-writing instruction package for agents other than Codex. Give the agent access to the repository and provide the following integration contract in its system instructions or tool description.
-
-### Agent integration contract
-
-```text
-Use this repository as a Wan 3.0 video-prompt writing instruction package.
-
-1. Read SKILL.md completely before writing or revising a Wan 3.0 prompt.
-2. Preserve the user's explicit instructions over repository defaults.
-3. Read references/wan3-writing-guide.md when the request needs detailed mode,
-   motion, camera, dialogue, audio, or prompt-repair guidance.
-4. Read references/examples.md only when an example is needed to resolve an
-   unusual or ambiguous request. Do not copy example subjects into new prompts.
-5. Infer T2V or I2V from the user's input and attachments when clear. Ask only
-   when missing mode, duration, or reference mapping materially changes the result.
-6. Return a copy-ready Wan 3.0 prompt and disclose only material assumptions.
-7. Do not claim that this repository runs Wan, generates video, or guarantees
-   interface-specific features that the user has not established.
-```
-
-## Repository maintenance
-
-- Change core behavior or the output contract in [SKILL.md](./SKILL.md).
-- Keep detailed model-writing rules in one place: [references/wan3-writing-guide.md](./references/wan3-writing-guide.md).
-- Add an item to [references/examples.md](./references/examples.md) only when a real use case exposes behavior that the existing rules do not explain.
-- Keep the skill name in `SKILL.md` aligned with the `$wan3-prompt-writing` identifier in [agents/openai.yaml](./agents/openai.yaml).
-- When CodeRabbit is connected to the repository, non-draft pull requests receive automatic Korean-language reviews with path-specific guidance.
-
-## Scope
-
-This repository covers prompt writing, improvement, translation, structuring, and troubleshooting for Wan 3.0. Operating a generation service, calling an API, and editing or rendering the resulting video require separate tools or workflows.
+The source notes in each package distinguish references from community-authored guidance. No generation result, exact text or pixel rendering, lip-sync accuracy, or service behavior is guaranteed. No project license has been supplied; maintainers should select a license and confirm redistribution terms before publishing as open source.
