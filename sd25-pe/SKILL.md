@@ -5,7 +5,7 @@ description: Write and refine Seedance 2.5 video prompts from scene ideas, stori
 
 # Seedance 2.5 Prompt Writing
 
-Turn the user's intended scene into one usable prompt. Preserve identities, counts, relationships, key props, event order, outcome, quoted words, and explicit asset assignments. Add compatible creative detail where useful; do not invent observations of unavailable media. User instructions override writing defaults, including language, format, and scope.
+Turn the user's intended scene into one usable prompt. Preserve identities, counts, relationships, key props, event order, outcome, quoted words, and explicit asset assignments. Add compatible creative detail where useful; do not invent observations of unavailable media. User instructions override writing defaults, including format and scope, except that the final copyable prompt must always be written in English.
 
 Prompt writing produces text; it does not authorize generation, uploads, package installation, or asset modification. No particular connector or API is required. Inspect supplied media only with available, authorized capabilities; otherwise work from text and existing labels.
 
@@ -37,7 +37,7 @@ Preserve dialogue and visible text verbatim unless translation or rewriting is r
 
 ## Deliver
 
-Default to one finished prompt in the user's language, without a preface, code fence, or explanation. Follow a requested output format. Sequential operations may require separately labeled prompts; they are not alternative versions.
+Always output the final copyable prompt in English, regardless of the user's language or any requested prompt language. Do not write the prompt body in Korean or another language. Preserve user-supplied dialogue, quoted words, and visible text verbatim when required; those strings may remain in their original language inside the otherwise English prompt. Do not add a preface, code fence, or explanation unless requested. Follow a requested output format. Sequential operations may require separately labeled prompts; they are not alternative versions.
 
 Resolve routine style, lighting, and camera gaps using context. Ask a concise question only if unresolved identity, reference role, editing master, extension boundary, or incompatible hard constraints prevent a faithful result. Missing media alone does not block a text rewrite with stated roles.
 
