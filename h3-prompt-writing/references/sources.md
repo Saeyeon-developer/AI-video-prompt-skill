@@ -2,7 +2,7 @@
 
 Reviewed against the user-supplied snapshot on 2026-09-05:
 
-| Repository source | Retained guidance |
+| Historical authoring source (not distributed) | Retained guidance |
 | --- | --- |
 | `Base-H3/SKILL.md` | T2VA/I2VA/FL2VA/L2VA and Ref2VA routing |
 | `Base-H3/base-en.txt` | Three fields, exact frame-alignment syntax, shot/cut notation, speakers, dialogue, sound |

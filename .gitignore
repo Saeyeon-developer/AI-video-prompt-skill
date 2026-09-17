@@ -1,3 +1,9 @@
 # Local audit notes and source archives are not part of the repository release.
 /AUDIT*
 /Base*/
+
+# Local Python environments and analysis runtime caches.
+.runtime/
+.venv/
+__pycache__/
+*.py[cod]

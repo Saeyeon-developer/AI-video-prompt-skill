@@ -1,6 +1,6 @@
 ---
 name: ai-video-production
-description: Route AI video production work to the right skill for Blender previs, Seedance 2.5, MiniMax H3, Wan 3.0, or supporting GPT Image 2.5 still images. Use for multi-stage production, reference planning, or choosing among these skills; go directly to the named model skill for a simple model-specific prompt request.
+description: Route AI video production work to the right skill for viral-ad analysis and dialogue-led recreation, Blender previs, Seedance 2.5, MiniMax H3, Wan 3.0, or supporting GPT Image 2.5 still images. Use for multi-stage production, reference planning, or choosing among these skills; go directly to the named model skill for a simple model-specific prompt request.
 ---
 
 # AI Video Production
@@ -9,17 +9,18 @@ Identify the requested deliverable and current stage, then use the smallest rele
 
 ## Select by task and output medium
 
-1. **Previs or motion control:** Use the catalog's Blender workflow for reference analysis, primitive blocking, camera/action control, render review, and comparison with generated video. If the request is analysis-only, deliver the analysis without assuming scene creation is authorized.
-2. **Video prompt:** Use the explicitly selected video model's writer. Keep its reference identifiers, field order, prompt language rules and output format. A shared brief can feed several requested model writers, but their final prompts remain separate.
-3. **Still-image assets:** Use the image writer only when the user needs an image prompt or image work, such as a product sheet, background, keyframe or edit. A still image for a video project is still an image deliverable. Image-to-video prompting goes to the selected video model writer.
-4. **Generation or submission:** Prompt skills supply instructions, not a generation service. Use a separate available execution capability only when the user's request includes that action. Preserve an established manual-submission workflow.
-5. **Feedback:** Compare the reference, actual submitted inputs and result. Distinguish geometry/contact, motion/timing, identity/surfaces and appearance. Route a confirmed cause to the affected previs, image asset or prompt, then verify the changed part.
+1. **Ad reference analysis or dialogue-led recreation:** Use `video-ad-analyzer` for cuts, action, speech evidence and the relationships that drive the screen. Deliver analysis alone when requested. For a new script/product, create a separate semantic plan and pass it to the selected model writer; Seedance 2.5 uses `sd25-pe`. Original timestamps remain evidence, not fixed timing for rewritten dialogue.
+2. **Previs or motion control:** Use the catalog's Blender workflow for reference analysis, primitive blocking, camera/action control, render review, and comparison with generated video. If the request is analysis-only, deliver the analysis without assuming scene creation is authorized.
+3. **Video prompt:** Use the explicitly selected video model's writer. Keep its reference identifiers, field order, prompt language rules and output format. A shared brief can feed several requested model writers, but their final prompts remain separate.
+4. **Still-image assets:** Use the image writer only when the user needs an image prompt or image work, such as a product sheet, background, keyframe or edit. A still image for a video project is still an image deliverable. Image-to-video prompting goes to the selected video model writer.
+5. **Generation or submission:** Prompt skills supply instructions, not a generation service. Use a separate available execution capability only when the user's request includes that action. Preserve an established manual-submission workflow.
+6. **Feedback:** Compare the reference, actual submitted inputs and result. Distinguish geometry/contact, motion/timing, identity/surfaces and appearance. Route a confirmed cause to the affected previs, image asset or prompt, then verify the changed part.
 
 Use the user's model choice and prior decisions. If no model has been chosen, continue independent reference analysis, asset planning or previs work. Ask for a model only when a model-specific deliverable depends on that choice; do not silently choose one or force every project through Blender.
 
 ## Carry context between stages
 
-Maintain a compact brief containing the output medium, subjects and object identities, reference roles, required action and outcome, shot boundaries, product states, sound/text requirements, file versions and approved deviations. Use this brief instead of reopening the whole conversation or loading unrelated model guides.
+Maintain a compact brief containing the output medium, subjects and object identities, reference roles, required action and outcome, shot boundaries, product states, sound/text requirements, file versions and approved deviations. For dialogue-led adaptations, carry speaker roles, exact new dialogue, phrase/action anchors and the distinction between observed source times and estimated target duration. Use this brief instead of reopening the whole conversation or loading unrelated model guides.
 
 For reference-driven video, distinguish what the reference controls: composition, camera, motion, timing, anatomy, identity, product design, surfaces, wallpaper, style or sound. Resolve contradictions by preserving the user's current intent and stating any material assumption. An appearance sheet must not accidentally become a multi-object layout instruction.
 
@@ -27,8 +28,9 @@ Keep output settings and platform attachment mapping outside the copyable prompt
 
 ## Scope and library boundaries
 
-- The catalog lists the active skills. All `Base*` directories are authoring source archives; do not select, install or execute them as production skills, even if they contain `SKILL.md`.
-- Read references progressively. Do not copy the source archives or every model guide into this router.
+- The catalog lists the active skills included in the distribution. `Base*` source archives and `AUDIT*` maintenance records are excluded from Git and stored outside the library; neither they nor an author's backup path are needed for production.
+- Read references progressively. Resolve their paths from the containing document and keep each skill's supporting files together. Source notes and case records are evidence, not a requirement to locate the original author's files.
+- For speech analysis, reuse a prepared shared or project-specific WhisperX runtime through `video-ad-analyzer`'s speech guide. Keep runtime/cache paths separate from the current project's inputs and results; choosing this stage does not require reinstalling an available environment.
 - Do not create images, render Blender scenes, run paid generations or publish content solely because a later production stage may need them.
 - This router uses the catalog's sibling skills when present. If copied alone, locate the named installed skill through the host's available skill list; if missing, report the missing capability rather than inventing its model syntax. A generic draft may still be delivered when useful and clearly labeled.
 - Keep observed results, hypotheses and pending validation separate. An untested prompt or previs is not a successful model test.

@@ -2,7 +2,7 @@
 
 Reviewed against user-supplied snapshots on 2026-09-05:
 
-| Repository source | Scope |
+| Historical authoring source (not distributed) | Scope |
 | --- | --- |
 | `Base-wan3/Wan3.md` | Model Studio T2V/I2V prompt guide; includes explicit Wan 3.0 multi-shot, sound, and reference sections, plus older-model examples |
 | `Base-wan3/system_prompt.py` | Wan 2.2 prompt-rewriting heuristics |

@@ -1,6 +1,6 @@
 # AI 영상 제작 통합 스킬 공간
 
-영상 제작에 필요한 프리비즈, 모델별 영상 프롬프트, 보조 이미지 작업을 관리합니다. 각 스킬의 기존 모델 문법은 독립적으로 유지하고, 작업에 필요한 스킬만 선택해서 사용합니다.
+영상 제작에 필요한 광고 레퍼런스 분석, 프리비즈, 모델별 영상 프롬프트, 보조 이미지 작업을 제공하는 통합 스킬 모음입니다. Git clone 또는 ZIP으로 받은 파일만으로 지침을 사용할 수 있으며, 작성자의 원본 자료나 기존 프로젝트는 필요하지 않습니다. 실행 도구는 아래의 작업별 요구사항에 따라 별도로 준비합니다.
 
 **AI가 처음 읽을 문서:** [AGENTS.md](AGENTS.md). **어떤 스킬을 쓸지 판단할 진입점:** [ai-video-production](ai-video-production/SKILL.md). 전체 분류와 사용 조건은 [스킬 목록](ai-video-production/references/skill-catalog.md)이 기준입니다.
 
@@ -8,7 +8,8 @@
 
 | 단계 | 스킬 | 주요 용도 |
 |---|---|---|
-| 작업 선택·단계 연결 | [ai-video-production](ai-video-production/SKILL.md) | 프리비즈, 영상 프롬프트, 이미지 에셋 작업을 구분하고 필요한 스킬 선택 |
+| 작업 선택·단계 연결 | [ai-video-production](ai-video-production/SKILL.md) | 광고 분석, 프리비즈, 영상 프롬프트, 이미지 에셋 작업을 구분하고 필요한 스킬 선택 |
+| 광고 분석·재창작 설계 | [video-ad-analyzer](video-ad-analyzer/SKILL.md) | 컷·행동·대사 분석, WhisperX 전사·정렬, 새 멘트에 맞춘 연출 계획과 Seedance 프롬프트 |
 | 프리비즈·결과 분석 | [blender-previs-to-video](blender-previs-to-video/SKILL.md) | 원본 구도·동작 분석, Blender 기본 도형 제작, 접촉·회전 검토, 생성 결과 비교 |
 | 영상 프롬프트 | [sd25-pe](sd25-pe/SKILL.md) | Seedance 2.5의 장면·참조·프리비즈·편집·연장 프롬프트 |
 | 영상 프롬프트 | [h3-prompt-writing](h3-prompt-writing/SKILL.md) | MiniMax H3의 텍스트·키프레임·전체 참조 모드와 전용 필드·태그 |
@@ -17,26 +18,71 @@
 
 `gpt-image-25`는 **동영상 생성 스킬이 아닙니다.** 영상 제작에 쓰일 이미지를 준비할 수 있지만, 이미지를 움직이는 영상으로 만드는 프롬프트는 해당 영상 모델의 스킬을 사용합니다.
 
-## 원본 자료와 실사용 스킬의 구분
+## 새 환경에서 시작하기
 
-`Base`로 시작하는 폴더는 스킬을 작성할 때 참고한 **오리지널 자료 보관소**입니다. `Base-H3/SKILL.md`처럼 내부에 스킬과 같은 파일명이 있어도 실사용 스킬로 읽거나 설치하지 않습니다. 이 규칙은 앞으로 추가되는 `Base*` 폴더에도 적용합니다.
+1. 저장소를 clone하거나 ZIP을 풀고 폴더 구조를 유지합니다. 위 7개 스킬 폴더가 배포 단위입니다. `SKILL.md`만 복사하지 말고 각 폴더 안의 `references/`, `scripts/`, `assets/`, `agents/`도 있는 그대로 유지합니다.
+2. 이 폴더를 AI 작업 공간으로 열고 `AGENTS.md`를 읽도록 요청합니다. 다른 작업 공간에서는 **실제 다운로드 위치**의 `AGENTS.md` 경로를 알려줍니다. 예: “`<다운로드한 폴더>/AGENTS.md`를 읽고 첨부 광고의 컷과 대사를 분석해 주세요.” 꺾쇠 부분은 실제 경로로 바꿉니다.
+3. 모델이 정해진 프롬프트 요청은 해당 `SKILL.md`로 바로 들어갑니다. 분석·프리비즈·프롬프트를 연결하거나 스킬 선택이 필요하면 `ai-video-production`에서 시작합니다.
+4. 아래 표에서 필요한 도구만 준비합니다. 스킬 파일을 다운로드해도 Python, FFmpeg, Blender, WhisperX 환경이나 모델 가중치가 자동 설치되지는 않습니다.
 
-- 현재 원본 자료: `Base-H3`, `Base-sd25`, `Base-wan3`, `Base-gpt-image-25`.
-- 자료 대조·출처 검증·스킬 개정 작업에서 필요한 경우에만 해당 원본을 읽습니다.
-- `AUDIT*.md`는 과거 검수 기록입니다. 당시 상태와 현재 목록이 다를 수 있습니다.
-- 실행할 스킬은 위 목록의 6개 폴더입니다. 각 폴더의 `references/`는 그 스킬이 필요할 때 선택해서 읽는 작업 지침입니다.
+Codex 자동 발견을 사용하려면 7개 스킬 폴더를 프로젝트의 `.agents/skills/` 또는 개인 `~/.agents/skills/` 아래에 **나란히** 복사합니다. 통합 모음 전체를 하나의 스킬 폴더로 중첩하지 않습니다. 설치 후 구조는 다음과 같습니다. [공식 스킬 발견 경로 안내](https://learn.chatgpt.com/docs/build-skills)
 
-## 사용 방법
+```text
+.agents/skills/
+├── ai-video-production/SKILL.md
+├── video-ad-analyzer/SKILL.md
+├── blender-previs-to-video/SKILL.md
+├── sd25-pe/SKILL.md
+├── h3-prompt-writing/SKILL.md
+├── wan3-prompt-writing/SKILL.md
+└── gpt-image-25/SKILL.md
+```
 
-이 폴더를 작업 공간으로 사용하는 AI는 `AGENTS.md`와 스킬 목록에서 시작합니다. 다른 작업 공간에서 사용할 때는 다음처럼 진입점의 경로를 알려줄 수 있습니다.
+위 트리는 진입점만 표시하며 각 폴더의 보조 파일도 함께 복사해야 합니다. 루트 `README.md`와 `AGENTS.md`는 모음의 사용·관리 안내이므로 대상 프로젝트의 기존 `AGENTS.md`를 덮어쓸 필요가 없습니다. 일부 스킬만 설치할 수도 있지만 라우터만 복사하면 다른 스킬의 기능이 포함되지 않습니다. 광고 분석만 할 때는 `video-ad-analyzer`, Seedance 2.5용 재창작 프롬프트까지 작성할 때는 `sd25-pe`도 함께 설치합니다.
 
-> `C:/Projects/Codex/video-skill/AGENTS.md`를 읽고, 이번 요청에 맞는 스킬을 선택해 작업해 주세요.
+다른 AI 환경에서는 해당 호스트의 스킬 등록 방법을 따르거나 실제 `SKILL.md` 경로를 지정합니다. 상대 링크는 해당 문서 위치를 기준으로 해석합니다. 관리본을 갱신해도 다른 위치의 복사본은 자동 갱신되지 않으므로, 같은 이름의 사본이 중복되지 않게 관리합니다.
 
-모델이 이미 정해진 단순 요청은 해당 `SKILL.md`로 바로 들어갑니다. 예를 들어 SD 프롬프트만 요청했으면 Blender를 다시 제작하거나 다른 모델 스킬까지 읽을 필요가 없습니다. 모델이 정해지지 않아도 원본 분석과 프리비즈 작업은 먼저 진행할 수 있습니다.
+## 작업별 실행 도구
 
-Codex의 자동 스킬 목록에 표시하려면 이 관리 폴더와 별도로 지원되는 스킬 발견 경로에 등록해야 합니다. 기존 4개 모델 스킬과 Blender 스킬은 폴더 전체를 프로젝트 `.agents/skills/` 또는 개인 `~/.agents/skills/` 아래에 복사해 사용할 수 있습니다. 통합 스킬은 함께 사용할 스킬들을 같은 상위 폴더에 두면 목록의 상대 링크가 유지됩니다. 독립적으로 설치한 통합 스킬은 호스트의 설치된 스킬 목록에서 이름으로 찾도록 안내합니다. 원본 관리 폴더를 갱신해도 다른 곳의 복사본까지 자동 갱신되는 것은 아닙니다.
+| 작업 | 필요한 환경 | 준비·확인 방법 |
+|---|---|---|
+| 라우팅·모델별 텍스트 프롬프트 | Markdown을 읽는 AI | 생성 SDK·API 키·Python 불필요. 참조 미디어 해석은 호스트의 관찰 기능 필요 |
+| 영상 직접 관찰 | 호스트의 영상·이미지·음성 관찰 기능 | 접근 가능한 원본을 제공. 음성 확인이 안 되면 시각 분석을 진행하고 음향은 미확인으로 기록 |
+| 프레임·컨택트시트·오디오 추출 | Python 3.11+, PATH의 `ffmpeg`·`ffprobe`, 라벨용 폰트 | [로컬 관찰 절차](video-ad-analyzer/references/local-observation.md). 폰트 자동 탐색 실패 시 `--font` 지정 |
+| 분석 JSON·이미지 설정 검사 | Python 3.11+ 표준 라이브러리 | `video-ad-analyzer/scripts/check_analysis.py`, `gpt-image-25/scripts/check_settings.py`의 `--help` 확인 |
+| 로컬 음성 전사·정렬(선택) | 별도 Python 3.11·WhisperX·모델 캐시, FFmpeg/ffprobe | [전사 환경 구성](video-ad-analyzer/references/speech-transcription.md). 제공 설치 스크립트는 Windows/NVIDIA 기준이며 `uv` 필요 |
+| Blender 프리비즈 제작·렌더(선택) | Blender와 해당 환경에서 사용할 실행·제어 수단 | 현재 환경에서 실행 파일/연결을 확인. 영상 인코딩·확인 도구는 요청한 출력에 맞춰 준비 |
 
-**이번 정리는 이 폴더 안의 지침과 스킬 구성 변경입니다. 전역 설치나 다른 작업 공간의 설정 변경은 수행하지 않았습니다.** 폴더 이름이나 문서만 추가했다고 모든 AI 환경에서 자동 발견되는 것으로 가정하지 않습니다. [Codex 스킬 발견 경로 안내](https://learn.chatgpt.com/docs/build-skills)
+로컬 분석 도구는 저장소 루트에서 다음과 같이 확인할 수 있습니다. 이는 도움말 확인이며 설치나 모델 다운로드를 실행하지 않습니다.
+
+```text
+python --version
+ffmpeg -version
+ffprobe -version
+python video-ad-analyzer/scripts/extract_evidence.py --help
+python video-ad-analyzer/scripts/check_analysis.py --help
+python video-ad-analyzer/scripts/transcribe_video.py --help
+```
+
+전사는 준비된 환경의 Python과 `--cache-dir`를 명시해 재사용합니다. 새 환경이 필요한 경우에만 설치 예제의 `-RuntimeRoot`를 지정합니다. Windows/NVIDIA 이외의 환경은 해당 런타임 구성을 별도로 확인해야 하며, 제공 설치 스크립트의 지원 범위로 간주하지 않습니다. 도구가 없는 단계는 한계를 밝히고 독립적으로 가능한 분석·설계를 계속합니다.
+
+### 이 PC의 공용 WhisperX 환경
+
+현재 작성자 PC에서는 `C:/Projects/Codex/.runtime/whisperx`를 여러 프로젝트가 함께 사용합니다. 실행 Python은 그 아래 `venv/Scripts/python.exe`, 모델 캐시는 `models`이며, `runtime-info.json`과 `README.md`에 실제 경로·검증 기록이 있습니다. 입력 영상과 전사 결과는 각 작업 프로젝트에 둡니다. [공용 환경 호출 예제와 새 환경 설치 절차](video-ad-analyzer/references/speech-transcription.md)를 따릅니다.
+
+Hypnos 프로젝트의 옛 `.runtime`은 이전·검증 후 제거되었습니다. 공용 환경에는 재설치나 모델 재다운로드가 필요하지 않습니다. 기존 설치 스크립트는 `-RuntimeRoot` 아래 `whisperx/`를 만들므로, `venv/`를 사용하는 공용 루트에 그대로 실행하지 않습니다. 이 공용 경로는 해당 PC의 설정이며 다른 PC나 Git 다운로드본의 필수 경로가 아닙니다.
+
+## 배포 파일과 외부 자료
+
+`Base*` 원본 자료와 `AUDIT*` 과거 검수 기록은 **Git 배포에 포함되지 않으며 스킬 실행·설치에도 필요하지 않습니다.** 작성자의 백업은 이 모음 밖에서 관리합니다. 새 환경에서 백업 폴더를 만들거나 원본 자료를 복원할 필요가 없습니다.
+
+각 스킬의 `references/`는 조건부 작업 지침입니다. 출처 문서의 과거 파일명과 사례 기록의 검증 자료 경로는 근거 추적용이며 필수 실행 의존성이 아닙니다. 사례 프로젝트 없이도 스킬을 사용할 수 있습니다. 영상·`.blend`·전사·생성 결과는 실제 작업 프로젝트에 두고, 가상환경·모델 캐시는 공용 또는 프로젝트별 외부 위치에서 관리합니다. 이 모음 안에는 저장하지 않습니다.
+
+## 광고 분석과 대사 기반 재창작
+
+[video-ad-analyzer](video-ad-analyzer/SKILL.md)는 원본의 컷·행동·대사와 그 연결을 관찰하고, 새 제품·인물·멘트에 맞는 연출 계획을 작성합니다. 원본 타임스탬프는 관찰 근거로 보존하고, 새 영상의 화면은 새 대사나 행동에 연결합니다. Seedance 2.5용 최종 문법은 함께 있는 `sd25-pe`에 연결합니다. Blender가 필요한 동작·접촉 검토는 별도 프리비즈 단계로 선택합니다.
+
+시각 근거 추출은 Python·FFmpeg, JSON 검사는 Python으로 실행합니다. 음성 전사는 별도 WhisperX 환경이 있을 때 사용하며, 모델과 가상환경은 스킬에 포함하지 않습니다. [전사 절차](video-ad-analyzer/references/speech-transcription.md)에 공용 환경 재사용과 새 환경 설치 방법이 있습니다. [바이럴 분석·재창작 사례](video-ad-analyzer/references/case-viral.md)는 검증 자료의 위치, 공용 환경 이전 결과와 사용자가 보고한 생성 결과를 구분해 기록합니다.
 
 ## 프리비즈 노하우와 실험 기록
 
