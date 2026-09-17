@@ -37,9 +37,9 @@ $sd25-pe Edit @Video1: translate its dialogue into Korean and adapt the lip move
 
 ## 출력 / Output
 
-기본적으로 요청 언어의 최종 프롬프트 하나만 출력합니다. 복잡한 작업에는 소재 역할·사건·연속성 구획이 포함될 수 있습니다. 화면비·총길이·해상도 같은 실행 설정은 프롬프트와 분리합니다. 장면별 타임스탬프는 창작 지시이므로 사용할 수 있습니다.
+기본적으로 사용자 언어와 관계없이 영어로 된 최종 프롬프트 하나만 출력합니다. 복잡한 작업에는 소재 역할·사건·연속성 구획이 포함될 수 있습니다. 대사·인용문·화면 문구는 필요한 경우 원문 언어를 보존할 수 있습니다. 화면비·총길이·해상도 같은 실행 설정은 프롬프트와 분리합니다. 장면별 타임스탬프는 창작 지시이므로 사용할 수 있습니다.
 
-Returns one prompt in the requested language. Ratio, total duration, resolution, and other interface settings stay outside it; creative timing may appear inside. Explicit edits are not silently converted into regeneration when settings conflict.
+Returns one final prompt written in English regardless of the user's language or requested prompt language. Quoted dialogue and visible text may remain in their original language when required. Ratio, total duration, resolution, and other interface settings stay outside it; creative timing may appear inside. Explicit edits are not silently converted into regeneration when settings conflict.
 
 ## 파일 / Files
 

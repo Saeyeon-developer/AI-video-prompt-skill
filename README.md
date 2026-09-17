@@ -1,33 +1,53 @@
-# AI Video Prompt Skills
+# AI 영상 제작 통합 스킬 공간
 
-영상 생성 모델별로 장면 의도를 실행 가능한 프롬프트로 구체화하는 세 가지 독립형 커뮤니티 스킬 모음입니다. 프롬프트 텍스트를 작성하며, 영상 생성 서비스나 API를 직접 조작하지 않습니다.
+영상 제작에 필요한 프리비즈, 모델별 영상 프롬프트, 보조 이미지 작업을 관리합니다. 각 스킬의 기존 모델 문법은 독립적으로 유지하고, 작업에 필요한 스킬만 선택해서 사용합니다.
 
-Three self-contained community skills for turning creative intent into model-specific video prompts. They author prompt text; they do not operate generation services or APIs.
+**AI가 처음 읽을 문서:** [AGENTS.md](AGENTS.md). **어떤 스킬을 쓸지 판단할 진입점:** [ai-video-production](ai-video-production/SKILL.md). 전체 분류와 사용 조건은 [스킬 목록](ai-video-production/references/skill-catalog.md)이 기준입니다.
 
-| 모델 / Model | 스킬 / Skill | 안내 / Guide |
-| --- | --- | --- |
-| MiniMax H3 | `h3-prompt-writing` | [한국어·English](h3-prompt-writing/Readme.md) |
-| Seedance 2.5 | `sd25-pe` | [한국어·English](sd25-pe/Readme.md) |
-| Wan 3.0 | `wan3-prompt-writing` | [한국어·English](wan3-prompt-writing/Readme.md) |
+## 구성
 
-## Quick start
+| 단계 | 스킬 | 주요 용도 |
+|---|---|---|
+| 작업 선택·단계 연결 | [ai-video-production](ai-video-production/SKILL.md) | 프리비즈, 영상 프롬프트, 이미지 에셋 작업을 구분하고 필요한 스킬 선택 |
+| 프리비즈·결과 분석 | [blender-previs-to-video](blender-previs-to-video/SKILL.md) | 원본 구도·동작 분석, Blender 기본 도형 제작, 접촉·회전 검토, 생성 결과 비교 |
+| 영상 프롬프트 | [sd25-pe](sd25-pe/SKILL.md) | Seedance 2.5의 장면·참조·프리비즈·편집·연장 프롬프트 |
+| 영상 프롬프트 | [h3-prompt-writing](h3-prompt-writing/SKILL.md) | MiniMax H3의 텍스트·키프레임·전체 참조 모드와 전용 필드·태그 |
+| 영상 프롬프트 | [wan3-prompt-writing](wan3-prompt-writing/SKILL.md) | Wan 3.0의 T2V·I2V·참조·오디오·멀티샷 프롬프트 |
+| **정지 이미지** | [gpt-image-25](gpt-image-25/SKILL.md) | GPT Image 2.5용 이미지 생성·편집 프롬프트와 설정; 제품 시트·배경·키프레임 준비 |
 
-1. 원하는 스킬 폴더 전체를 프로젝트의 `.agents/skills/` 아래에 복사합니다. 개인 공용 설치 경로는 `~/.agents/skills/`입니다.
-2. Codex에서 `$h3-prompt-writing`, `$sd25-pe`, `$wan3-prompt-writing` 중 하나와 장면 설명을 입력합니다.
-3. 반환된 프롬프트를 대상 영상 생성 서비스에 전달하고, 출력 설정과 참조 파일은 해당 서비스에서 연결합니다.
+`gpt-image-25`는 **동영상 생성 스킬이 아닙니다.** 영상 제작에 쓰일 이미지를 준비할 수 있지만, 이미지를 움직이는 영상으로 만드는 프롬프트는 해당 영상 모델의 스킬을 사용합니다.
 
-Copy the chosen folder into a [Codex skill discovery location](https://learn.chatgpt.com/docs/build-skills), then invoke its `$skill-name`. Other agents can read the folder's `SKILL.md` and load only the relevant reference files. Each package is self-contained.
+## 원본 자료와 실사용 스킬의 구분
 
-## Package layout
+`Base`로 시작하는 폴더는 스킬을 작성할 때 참고한 **오리지널 자료 보관소**입니다. `Base-H3/SKILL.md`처럼 내부에 스킬과 같은 파일명이 있어도 실사용 스킬로 읽거나 설치하지 않습니다. 이 규칙은 앞으로 추가되는 `Base*` 폴더에도 적용합니다.
 
-Each skill folder contains its `SKILL.md` entrypoint, conditional writing references, examples, optional Codex UI metadata, and a bilingual `Readme.md`:
+- 현재 원본 자료: `Base-H3`, `Base-sd25`, `Base-wan3`, `Base-gpt-image-25`.
+- 자료 대조·출처 검증·스킬 개정 작업에서 필요한 경우에만 해당 원본을 읽습니다.
+- `AUDIT*.md`는 과거 검수 기록입니다. 당시 상태와 현재 목록이 다를 수 있습니다.
+- 실행할 스킬은 위 목록의 6개 폴더입니다. 각 폴더의 `references/`는 그 스킬이 필요할 때 선택해서 읽는 작업 지침입니다.
 
-- `h3-prompt-writing`: T2VA, I2VA, FL2VA, L2VA, and Ref2VA prompts for MiniMax H3.
-- `sd25-pe`: Seedance 2.5 prompts for scenes, references, keyframes, storyboards, edits, and extensions.
-- `wan3-prompt-writing`: Wan 3.0 prompts for text-to-video, image-to-video, references, sound, and multi-shot narratives.
+## 사용 방법
 
-## Scope and release status
+이 폴더를 작업 공간으로 사용하는 AI는 `AGENTS.md`와 스킬 목록에서 시작합니다. 다른 작업 공간에서 사용할 때는 다음처럼 진입점의 경로를 알려줄 수 있습니다.
 
-각 패키지의 `references/sources.md`에 참고 자료와 자체 작성 규칙을 구분해 기록했습니다. 이 저장소는 공급사의 공식 배포판이나 영상 품질·동기화 성능 인증을 의미하지 않습니다.
+> `C:/Projects/Codex/video-skill/AGENTS.md`를 읽고, 이번 요청에 맞는 스킬을 선택해 작업해 주세요.
 
-The source notes in each package distinguish references from community-authored guidance. No generation result, exact text or pixel rendering, lip-sync accuracy, or service behavior is guaranteed. No project license has been supplied; maintainers should select a license and confirm redistribution terms before publishing as open source.
+모델이 이미 정해진 단순 요청은 해당 `SKILL.md`로 바로 들어갑니다. 예를 들어 SD 프롬프트만 요청했으면 Blender를 다시 제작하거나 다른 모델 스킬까지 읽을 필요가 없습니다. 모델이 정해지지 않아도 원본 분석과 프리비즈 작업은 먼저 진행할 수 있습니다.
+
+Codex의 자동 스킬 목록에 표시하려면 이 관리 폴더와 별도로 지원되는 스킬 발견 경로에 등록해야 합니다. 기존 4개 모델 스킬과 Blender 스킬은 폴더 전체를 프로젝트 `.agents/skills/` 또는 개인 `~/.agents/skills/` 아래에 복사해 사용할 수 있습니다. 통합 스킬은 함께 사용할 스킬들을 같은 상위 폴더에 두면 목록의 상대 링크가 유지됩니다. 독립적으로 설치한 통합 스킬은 호스트의 설치된 스킬 목록에서 이름으로 찾도록 안내합니다. 원본 관리 폴더를 갱신해도 다른 곳의 복사본까지 자동 갱신되는 것은 아닙니다.
+
+**이번 정리는 이 폴더 안의 지침과 스킬 구성 변경입니다. 전역 설치나 다른 작업 공간의 설정 변경은 수행하지 않았습니다.** 폴더 이름이나 문서만 추가했다고 모든 AI 환경에서 자동 발견되는 것으로 가정하지 않습니다. [Codex 스킬 발견 경로 안내](https://learn.chatgpt.com/docs/build-skills)
+
+## 프리비즈 노하우와 실험 기록
+
+새 Blender 스킬은 재사용 가능한 제작 판단을 담습니다. 손가락·접촉·제품 앞뒤·힌지의 중요성, 사람의 미세 움직임과 카메라 흔들림의 구분, 원본/제출 클립의 시간축, 에셋 역할 분리, 결과 비교와 기록 방법을 다룹니다.
+
+[zfilp 사례 기록](blender-previs-to-video/references/case-zfilp.md)은 관찰·가설·검증 대기를 구분합니다. 초록/노랑 색상, 라벤더 배경, 손 없이 펼치는 연출 등은 해당 프로젝트의 결정이며 다른 작업의 기본 규칙이 아닙니다. 대용량 영상, Blender 파일, 실제 제출물은 각 프로젝트에 보관하고 스킬에서는 근거와 버전을 안내합니다.
+
+새 스킬을 추가할 때는 [스킬 목록](ai-video-production/references/skill-catalog.md)에 정확한 이름, 용도, 출력 매체와 사용 조건을 먼저 반영합니다. 모델의 상세 문법은 해당 스킬에서 관리하고 통합 안내에 중복 복사하지 않습니다.
+
+## 실행과 출처
+
+세 영상 모델 스킬은 프롬프트를 작성하며 생성 서비스나 API를 직접 운영하지 않습니다. 실제 생성·업로드는 사용자의 해당 요청과 이용 가능한 실행 도구에 따릅니다. 이미지 스킬 역시 프롬프트만 요청한 경우 이미지를 생성하지 않습니다.
+
+각 모델 스킬의 `references/sources.md`는 참고 자료와 자체 작성 지침을 구분합니다. 공급사의 공식 배포판이나 생성 품질 보증을 의미하지 않습니다. 원본 자료의 배포 조건과 프로젝트 라이선스는 공개 배포 시 별도로 확인해야 합니다.
