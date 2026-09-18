@@ -1,14 +1,14 @@
 # Sources and version boundaries
 
-Reviewed against user-supplied snapshots on 2026-09-05:
+Based on model guide snapshots reviewed on 2026-09-05:
 
-| Historical authoring source (not distributed) | Scope |
+| Source material | Scope |
 | --- | --- |
-| `Base-wan3/Wan3.md` | Model Studio T2V/I2V prompt guide; includes explicit Wan 3.0 multi-shot, sound, and reference sections, plus older-model examples |
-| `Base-wan3/system_prompt.py` | Wan 2.2 prompt-rewriting heuristics |
-| `Base-wan3/prompt_extend.py` | Wan 2.2 prompt-expander dispatch and runtime code |
+| Model Studio prompt guide | T2V/I2V guidance, explicit Wan 3.0 multi-shot, sound, and reference sections, plus older-model examples |
+| Wan 2.2 `system_prompt.py` | Prompt-rewriting heuristics |
+| Wan 2.2 `prompt_extend.py` | Prompt-expander dispatch and runtime code |
 
-The provided guide identifies the [Model Studio documentation index](https://docs.modelstudio.console.alibabacloud.com/llms.txt). Local files are the review evidence; no fresh verification of every vendor endpoint or capability is claimed. Provenance paths are not runtime dependencies.
+The guide identifies the [Model Studio documentation index](https://docs.modelstudio.console.alibabacloud.com/llms.txt). The reviewed snapshots do not establish every current vendor endpoint or capability. The installed skill does not require the original source files.
 
 Apply Wan 3.0-labeled formulas before generic conflicting advice. In particular, the explicit multi-shot formula takes precedence over the generic table saying one clip must contain one continuous shot. Keep the source's under-45-degree orbit advice as a recommendation when an orbit is chosen, not a hard limit. Retain `Image 1`/`Video 1` per-type numbering and documented `No dialogue.` / `No background music.` controls. Do not import Wan 2.6 `character1` syntax or its character count limit, or treat Wan 2.7's `shot_type` note as a universal Wan 3.0 API rule.
 

@@ -8,7 +8,7 @@
 - Keep finger lengths stable through a gesture. Two opposing thumb/index L shapes can imply a rectangle with gaps; do not connect fingertips unless the intended gesture does.
 - Avoid rings, fused loops and excessive seams from overlapping primitives when they read as anatomy. Union or smooth only as needed while preserving distinct finger silhouettes. A prettier surface does not fix an incorrect joint or grip.
 - Preserve supporting contacts while the object moves. Shared parent transforms work for rigid grips; animated contact points or constraints suit a fingertip following a rotating panel. Verify release timing before the hand withdraws.
-- Remove hands or change a difficult action only when the user has chosen or authorized that creative change. A successful hand-free opening in one case does not justify changing every future opening.
+- Remove hands or change a difficult action only when the user has chosen or authorized that creative change.
 
 ## Products and visible surfaces
 
@@ -24,7 +24,7 @@ Give important movements appropriate acceleration, deceleration and settling. Av
 
 If human micro-movement is desired, distinguish subtle hand steadiness from camera shake and from unwanted animation jitter. Move the supporting hand and held object coherently so their contact does not slide. Keep amplitude subordinate to the main action and inspect the render; a formula is not evidence that motion looks human. Unsupported packshot objects need not inherit hand motion.
 
-Do not copy one case's noise frequencies, motion amplitudes or easing values as universal defaults. Respect stylized/mechanical motion when the user requests it.
+Choose motion amplitudes and easing for the current action; respect stylized/mechanical motion when the user requests it.
 
 ## Review and preservation
 
@@ -32,4 +32,4 @@ Choose review frames around action changes: initial silhouette, approach, contac
 
 Use numeric verification where it answers a real failure risk: rigid finger lengths, a tracked contact point, panel angle limits, interpolation overshoot, exported frame counts, or preservation of an approved earlier segment. Explain the limit of each check. A contact-point error near zero does not prove that the entire mesh is collision-free.
 
-For a continuation, keep source absolute times and local clip times in the manifest. A source starting at 9.3 seconds has local time zero in the submitted continuation. Frame boundaries should be explicit about zero/one indexing and inclusive/exclusive ends.
+For a continuation, keep source absolute times and local clip times in the manifest. The first frame of the submitted continuation has local time zero regardless of its time in the full source. Frame boundaries should be explicit about zero/one indexing and inclusive/exclusive ends.

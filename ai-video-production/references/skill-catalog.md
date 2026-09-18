@@ -12,7 +12,7 @@ This is the maintained routing index for the `video-skill` workspace. Select by 
 | [wan3-prompt-writing](../../wan3-prompt-writing/SKILL.md) | **Video** prompt: Wan 3.0 | Wan text-to-video, image-to-video, references, sound or multi-shot prompts | Wan prompt and applicable reference identifiers; no service operation |
 | [gpt-image-25](../../gpt-image-25/SKILL.md) | **Still image**: GPT Image 2.5 | Image-generation/edit prompts, product sheets, backgrounds, keyframes, visible text or reference image edits | Still-image prompt/settings; actual image work only when requested and supported by available tools. Never a video writer |
 
-`SD` means Seedance only when the conversation establishes that meaning, as in the zfilp study. In another context it may refer to a different model; resolve a material ambiguity rather than silently routing it. `H3` here means MiniMax H3, not every product offered by a similarly named platform.
+`SD` means Seedance only when the conversation establishes that meaning. In another context it may refer to a different model; resolve a material ambiguity rather than silently routing it. `H3` here means MiniMax H3, not every product offered by a similarly named platform.
 
 ## Choose only the needed route
 
@@ -27,15 +27,14 @@ This is the maintained routing index for the `video-skill` workspace. Select by 
 | “이 제품 사진으로 Wan 영상을 만들 프롬프트” | `wan3-prompt-writing`; not the still-image writer |
 | “H3에서 참조 매핑 후 Subject/Video를 어떻게 쓰지?” | `h3-prompt-writing`, relevant native syntax/reference guide |
 | “같은 프리비즈를 SD, H3, Wan용으로 각각 작성해줘” | Shared reference-role brief, then each of the three requested video writers |
-| “Base-H3 원문과 현재 스킬을 대조해줘” | Skill maintenance: use source material supplied for this audit; the archive is not included in the distribution or needed for production |
 | “모델은 나중에 정하고 우선 프리비즈부터” | Blender workflow; do not block on model selection |
 
 ## Distribution and supporting files
 
 Production routing and installation use the seven active skill directories above. Keep them as siblings to preserve the relative links in this catalog. Copy each complete folder, including its supporting resources; copying only `SKILL.md` is insufficient. A router installed alone can use skills available by the same identifiers through the host, but does not include their capabilities itself.
 
-`README.md` is the human entrypoint and setup guide. Root `AGENTS.md` provides workspace instructions. A selected skill's `references/` holds conditional working guidance; `references/sources.md` and compact case records hold provenance and validation limits. None of these imply that every file should be loaded for every request.
+`README.md` is the human entrypoint and setup guide. Root `AGENTS.md` provides workspace instructions. A selected skill's `references/` holds conditional working guidance; `references/sources.md` holds attribution and scope. None of these imply that every file should be loaded for every request.
 
-`Base*` authoring archives and `AUDIT*` maintenance records are excluded from Git and stored outside this library. A fresh clone does not contain or need them. Historical filenames in source notes identify reviewed material, not installable dependencies. Original case projects, runtime environments and model weights are also not bundled. Use the current project's paths for inputs and results. For transcription, reuse a prepared shared or project-specific runtime and cache as described in the analyzer's speech guide; prepare a new environment only when needed.
+`Base*` authoring archives and `AUDIT*` maintenance records are excluded from Git. A fresh clone does not contain or need them. Project media, runtime environments and model weights are also not bundled. Use the current project's paths for inputs and results. For transcription, reuse a prepared shared or project-specific runtime and cache as described in the analyzer's speech guide; prepare a new environment only when needed.
 
 When adding a skill, update this catalog with its exact identifier, entrypoint, output medium, trigger, deliverable and important overlap. Preserve model-specific syntax in the individual skill; do not maintain a second copy here.

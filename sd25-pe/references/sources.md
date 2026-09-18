@@ -1,6 +1,6 @@
 # Sources and adaptations
 
-Reviewed against user-supplied `Base-sd25/Sd25.md` on 2026-09-05. The original 92,672-byte local `sd25-pe/SKILL.md` was also reviewed as the implementation being audited. The guide links to the [Seedance skill distribution](https://arkdocs.tos-cn-beijing.volces.com/skills/) and [prompt templates](https://bytedance.larkoffice.com/docx/OsiUdR1OxoDqvnxsK8LczYx7nPd); those links are provenance pointers, not additional fetched sources or installation requirements.
+Based on a Seedance 2.5 guide snapshot reviewed on 2026-09-05. The guide links to the [Seedance skill distribution](https://arkdocs.tos-cn-beijing.volces.com/skills/) and [prompt templates](https://bytedance.larkoffice.com/docx/OsiUdR1OxoDqvnxsK8LczYx7nPd); those links are provenance pointers, not installation requirements.
 
 | Source section | Implementation |
 | --- | --- |
@@ -14,9 +14,7 @@ Reviewed against user-supplied `Base-sd25/Sd25.md` on 2026-09-05. The original 9
 
 Local conventions, not claimed vendor syntax: bracketed output sections, unused-asset lists, coarse/fine blockout categories, and the optional sentence distinguishing regeneration from editing. Aliases are preserved or proposed explicitly; no hidden upload mapping is claimed.
 
-Corrections to the original implementation: removed the 0.3-second difference as an automatic task-rerouting threshold; separated API boundary roles from reference_image; allowed useful newly designed timestamps; preserved hard user timing; allowed requested dialogue creation and lip adaptation; removed mandatory subtitle exclusions and redundant full-object inventories. One asset can contribute multiple assigned dimensions, and user-requested identical subjects are not forbidden.
-
-Input limits describe the supplied snapshot and should not be assumed universal across providers. Runtime instructions are fully local; `Base-sd25` is not required after installation.
+Input limits describe the reviewed snapshot and should not be assumed universal across providers. The installed skill contains the working instructions and does not require the original source files.
 
 [OpenAI model guidance](https://developers.openai.com/api/docs/guides/latest-model) informs concise, intent-preserving instructions; [Build skills](https://learn.chatgpt.com/docs/build-skills) informs progressive disclosure. Neither establishes Seedance capabilities.
 

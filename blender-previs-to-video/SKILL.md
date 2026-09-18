@@ -29,6 +29,4 @@ Export the requested clean reference clip, editable scene, and a synchronized co
 
 Read [handoff and experiment records](references/handoff-and-experiments.md) for model prompt preparation, attachment mapping or output diagnosis. Use the selected model's available prompt-writing skill for its syntax; if none is available, do not invent required fields. Model choice need not block independent previs work.
 
-The [zfilp case](references/case-zfilp.md) contains the observations behind this workflow. Read it when a matching failure or evidence question arises, not as a mandatory scene template. Do not copy its product colors, hand identities, lavender setting, silent/no-copy treatment or self-opening direction into unrelated projects.
-
 Deliver the completed requested stage, the files needed for review or submission, and any remaining issue that affects use. A previs review does not authorize model submission; preserve an established manual-submission workflow.

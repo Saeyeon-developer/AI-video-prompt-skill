@@ -28,8 +28,8 @@ Keep output settings and platform attachment mapping outside the copyable prompt
 
 ## Scope and library boundaries
 
-- The catalog lists the active skills included in the distribution. `Base*` source archives and `AUDIT*` maintenance records are excluded from Git and stored outside the library; neither they nor an author's backup path are needed for production.
-- Read references progressively. Resolve their paths from the containing document and keep each skill's supporting files together. Source notes and case records are evidence, not a requirement to locate the original author's files.
+- The catalog lists the active skills included in the distribution. `Base*` source archives and `AUDIT*` maintenance records are excluded from Git and are not needed for production.
+- Read references progressively. Resolve their paths from the containing document and keep each skill's supporting files together. Source notes provide attribution; they are not additional runtime dependencies.
 - For speech analysis, reuse a prepared shared or project-specific WhisperX runtime through `video-ad-analyzer`'s speech guide. Keep runtime/cache paths separate from the current project's inputs and results; choosing this stage does not require reinstalling an available environment.
 - Do not create images, render Blender scenes, run paid generations or publish content solely because a later production stage may need them.
 - This router uses the catalog's sibling skills when present. If copied alone, locate the named installed skill through the host's available skill list; if missing, report the missing capability rather than inventing its model syntax. A generic draft may still be delivered when useful and clearly labeled.

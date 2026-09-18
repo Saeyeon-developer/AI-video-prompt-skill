@@ -26,7 +26,7 @@ For each actual generation, keep one small Markdown or JSON record with:
 - Output file/run identifier, synchronized comparison frames, observed defects and successful changes.
 - Changes from the preceding run, interpretation, confidence and next question.
 
-Keep videos, `.blend` files and full project scripts in the project archive. The skill should retain compact lessons and optional provenance, not duplicate every large artifact. Do not store credentials in an experiment record.
+Keep videos, `.blend` files, project scripts and experiment records in the project archive. Retain only reusable methods and relevant source attribution in the public skill. Do not store credentials in an experiment record.
 
 ## Diagnose before revising
 
