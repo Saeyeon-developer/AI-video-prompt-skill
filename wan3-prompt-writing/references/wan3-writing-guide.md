@@ -96,7 +96,7 @@ Repair weak inputs without changing their premise:
 - **Too long:** Preserve required beats and remove adjective stacks, redundant static details, and secondary actions.
 - **Conflicting camera terms:** Keep the term most important to the stated intention and remove the rest.
 - **Several locations:** Use the multi-shot formula for a narrative with scene changes. Split only when requested or required by a verified interface limit; simplify overloaded action within each shot.
-- **Exact text on screen:** Keep the exact requested wording. If precision is essential, briefly identify postproduction as an option without silently replacing the text with approximate signage.
+- **Exact text on screen:** Keep the exact requested wording in its display language; do not translate it into English. If precision is essential, briefly identify postproduction as an option without silently replacing the text with approximate signage.
 - **Named real person:** Preserve the requested identity; do not apply a blanket content-replacement rule. If a verified target-interface restriction affects the request, state it and distinguish any proposed alternative from the requested prompt.
 - **Exact lip sync:** Keep the spoken line concise and recommend a dedicated lip-sync or postproduction stage only if precision is essential.
 

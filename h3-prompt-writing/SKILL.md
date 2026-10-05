@@ -37,7 +37,7 @@ Use the full-reference guide for labels and retention markers.
 
 ## Output Rules
 
-- Always write every prompt section in English, regardless of the user's language or any requested prompt language. Do not write the prompt body in Korean or another language. Preserve dialogue, lyrics, and visible scene text verbatim unless the user requests translation or rewriting; those strings may remain in their original language inside `<d>` tags or quotation marks.
+- Always write every prompt section in English, regardless of the user's language or any requested prompt language. Do not write the prompt body in Korean or another language. Dialogue, lyrics, and visible scene text are the exception: write them in the language in which they must be heard or seen (inside `<d>` with the matching language tag, or in quotation marks for on-screen text), never translated into English because the prompt is English. Keep supplied wording verbatim unless the user requests translation or rewriting, and write newly drafted lines directly in the intended language.
 - Describe each shot by composition, subjects, environment, actions, camera, sound, and the exact point where referenced content appears.
 - Avoid plot summaries, unresolved reference labels, and timing that does not match the requested duration.
 - Return the selected mode's prompt fields and required keyframe alignment line without prefaces, extra headings, or explanations by default. Keep `retention_analysis` as the reference-role summary required by Ref2VA, not an account of internal reasoning. Follow an explicitly requested response format.

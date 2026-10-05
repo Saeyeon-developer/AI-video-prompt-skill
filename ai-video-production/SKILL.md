@@ -18,7 +18,7 @@ Identify the requested deliverable and current stage, then use the smallest rele
 
 Use the user's model choice and prior decisions. If no model has been chosen, continue independent reference analysis, asset planning or previs work. Ask for a model only when a model-specific deliverable depends on that choice; do not silently choose one or force every project through Blender.
 
-Every final copyable prompt, for video or still images, is written in English regardless of the user's language or a requested prompt language. Supplied dialogue, quoted words and visible text stay verbatim in their original language inside the English prompt. Explanations, analysis and handoff notes may follow the user's language.
+Every final copyable prompt, for video or still images, is written in English regardless of the user's language or a requested prompt language. Spoken dialogue, lyrics and in-scene or rendered text are the exception: they stay in the language in which they must be heard or seen (supplied wording verbatim, newly drafted lines in the intended language), never translated into English because the prompt is English. Explanations, analysis and handoff notes may follow the user's language.
 
 ## Carry context between stages
 

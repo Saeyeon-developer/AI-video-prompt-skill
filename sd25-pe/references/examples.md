@@ -7,8 +7,18 @@ These authored examples demonstrate decisions, not measured generation quality. 
 Brief: A red umbrella opens in the rain. Fixed camera, no dialogue or BGM.
 
 ```text
-빗속에서 빨간 우산 하나가 천천히 펼쳐진다. 접힌 천이 우산살을 따라 펴지고 빗방울이 가장자리에서 떨어진다. 카메라는 고정된 근접 구도를 유지한다. 빗소리와 우산이 펼쳐지는 소리만 들린다. 대사와 배경음악은 없다.
+A single red umbrella slowly opens in the rain. The folded canopy spreads along its ribs, and raindrops fall from the edges. The camera holds a fixed close-up. Only the sound of rain and the umbrella opening is heard. No dialogue or background music.
 ```
+
+## Korean dialogue and signage
+
+Brief: 카페 사장이 들어오는 손님에게 "어서 오세요, 오늘은 라떼가 좋아요."라고 말한다. 카운터 위 간판에는 "오늘의 커피".
+
+```text
+Inside a small café in the morning, the owner behind the counter looks up as a customer walks in and says in Korean, "어서 오세요, 오늘은 라떼가 좋아요." A wooden sign above the counter reads "오늘의 커피". Medium shot at eye level with a slow push-in toward the owner. Ambient sound: an espresso machine hissing and a door chime.
+```
+
+Only the description is English. The spoken line and sign text stay in Korean because they must be heard and seen in Korean.
 
 ## Semantic keyframes
 

@@ -45,7 +45,7 @@ For detailed mode formulas, camera intent, dialogue/audio handling, and prompt r
 
 ## Output contract
 
-Default to a single heading, `Wan 3.0 prompt`, followed by one fenced text block containing only the final model prompt. Always write the model prompt in English, regardless of the user's language or any requested prompt language. Do not write the prompt body in Korean or another language. Preserve quoted dialogue and visible text verbatim in their requested language inside the otherwise English prompt.
+Default to a single heading, `Wan 3.0 prompt`, followed by one fenced text block containing only the final model prompt. Always write the model prompt in English, regardless of the user's language or any requested prompt language. Do not write the prompt body in Korean or another language. Dialogue, lyrics, and on-screen text are the exception: write them in the language in which they must be heard or seen, never translated into English because the prompt is English. Keep supplied wording verbatim, write newly drafted lines directly in the intended language, and name the spoken language (for example, `says in Korean`).
 
 Add a short `Assumptions` note after the prompt only when a material choice had to be inferred. If the user asks for prompt-only output, return only the prompt. When the user requests alternatives, vary one meaningful dimension per version and label that difference rather than rewriting arbitrarily.
 

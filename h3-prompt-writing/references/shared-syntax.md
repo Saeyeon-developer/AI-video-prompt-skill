@@ -57,7 +57,7 @@ The camera holds a static shot as the runner exits the frame.
 
 Subjects who speak, sing, or produce an off-screen human voice use stable IDs such as `(S1)` and `(S2)`. When multiple already-numbered speakers speak or sing together, use a compound ID such as `(S1,S2)`. A speaker keeps the same ID across shots; characters who never vocalize receive no speaker ID.
 
-When a speaker first appears, use enough supplied or observed visual and audio information to identify them consistently. Do not infer age, gender, or accent merely to fill this description. Place the speaker's identifying phrase, ID, action, and delivery outside `<d>`. Inside `<d>`, include only the language tag and spoken content. Preserve user-provided words and punctuation unless translation or rewriting is requested; create new dialogue only when the brief calls for it.
+When a speaker first appears, use enough supplied or observed visual and audio information to identify them consistently. Do not infer age, gender, or accent merely to fill this description. Place the speaker's identifying phrase, ID, action, and delivery outside `<d>`. Inside `<d>`, include only the language tag and spoken content. Preserve user-provided words and punctuation unless translation or rewriting is requested; create new dialogue only when the brief calls for it. Write all dialogue, supplied or newly created, in the intended spoken language, not English by default, and match the language tag, for example `<d>[Korean] 다음 역에서 내려요.</d>`.
 
 ```text
 The young woman with a quiet, breathy voice (S1) says: <d>[English] I get off at the next station.</d>
@@ -74,7 +74,7 @@ When the same line of dialogue or lyrics crosses a cut, use `<scenetrans>` at th
 
 ### 4.5 On-Screen Text
 
-Place any banner, sign, label, subtitle, or neon text that is actually visible on screen in English double quotation marks. Preserve the original text and punctuation verbatim unless translation or rewriting is requested.
+Place any banner, sign, label, subtitle, or neon text that is actually visible on screen in straight double quotation marks (`"..."`). Keep the text in the language in which it must appear on screen; do not translate it into English because the surrounding prompt is English. Preserve the original text and punctuation verbatim unless translation or rewriting is requested.
 
 ```text
 A red neon sign reading "营业中" glows above the doorway.

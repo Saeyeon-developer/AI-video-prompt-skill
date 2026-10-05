@@ -18,7 +18,7 @@ Use familiar camera terms directly. Explain specialized effects visibly: rack fo
 
 ## Speech, music, and text
 
-Preserve supplied dialogue/lyrics/signage and punctuation unless translation/rewriting is requested. A quoted fragment is not permission to invent the rest. Compose dialogue when asked; preserve inaccessible source-speech instructions without fabricating words.
+Preserve supplied dialogue/lyrics/signage and punctuation unless translation/rewriting is requested. Write these strings, including newly composed lines, in their intended spoken or displayed language; the English prompt rule does not translate them. A quoted fragment is not permission to invent the rest. Compose dialogue when asked; preserve inaccessible source-speech instructions without fabricating words.
 
 Bind turns to speaker, language, delivery, and audio role. Distinguish speech from voiceover. Do not replace requested speech with silence or arbitrary mouth movement. Do not infer regional accent from script or identity. Distinguish music, effects, and dialogue so removing one preserves the others.
 

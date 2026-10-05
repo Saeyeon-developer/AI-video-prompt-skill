@@ -25,7 +25,7 @@ The skills **write prompts and plans; they do not call any generation API**. You
 | [wan3-prompt-writing](wan3-prompt-writing/SKILL.md) | **Video** prompt: Wan 3.0 | Text-to-video, image-to-video, reference, sound and multi-shot prompts | English |
 | [gpt-image-25](gpt-image-25/SKILL.md) | **Still image** prompt and settings: GPT Image 2.5 | Product sheets, backgrounds, keyframes, reference compositing and edits. **Not a video skill** | Mostly Korean |
 
-Agents can apply skills whose instructions are written in Korean to requests in any language. Every skill writes its final copyable prompts in English, whatever the request language; supplied dialogue and on-screen text stay verbatim.
+Agents can apply skills whose instructions are written in Korean to requests in any language. Every skill writes its final copyable prompts in English, whatever the request language; spoken dialogue and on-screen or rendered text stay in the language they must be heard or seen in.
 
 ### How the skills fit together
 
