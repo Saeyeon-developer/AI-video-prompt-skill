@@ -1,6 +1,6 @@
 # Video Prompt Writing Guide (T2VA / I2VA / FL2VA / L2VA)
 
-Language and presentation rules below are defaults: follow an explicit user request while preserving the H3 field names, speaker tags, and timing syntax. Preserve supplied dialogue and visible text verbatim unless the user asks to translate or rewrite them. Examples illustrate the format; they do not authorize adding their dialogue, music, or scene details to another request.
+Presentation rules below are defaults: follow an explicit user request while preserving the H3 field names, speaker tags, and timing syntax. Always write the prompt fields in English, regardless of the user's language or any requested prompt language. Preserve supplied dialogue and visible text verbatim unless the user asks to translate or rewrite them. Examples illustrate the format; they do not authorize adding their dialogue, music, or scene details to another request.
 
 ## 1. Task Overview
 

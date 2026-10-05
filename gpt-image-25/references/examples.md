@@ -1,14 +1,14 @@
 # 용도별 프롬프트 예
 
-공식 문서의 기법을 적용한 새 예시다. 아래 문구·상품·설정은 출발점이며 사용자 요구에 맞게 바꾼다. 섹션 형식이나 예시 금지 조건은 필수가 아니다. 설정은 복사할 프롬프트와 분리한다.
+공식 문서의 기법을 적용한 새 예시다. 아래 문구·상품·설정은 출발점이며 사용자 요구에 맞게 바꾼다. 섹션 형식이나 예시 금지 조건은 필수가 아니다. 설정은 복사할 프롬프트와 분리한다. 프롬프트 본문은 항상 영어로 쓰고, 이미지에 렌더링할 문구만 원래 언어 그대로 따옴표 안에 둔다.
 
 ## 제품 광고와 정확한 한글
 
 입력: 이미지 1이 사용자가 제공한 텀블러 사진인 경우.
 
 ```text
-이미지 1의 텀블러를 주인공으로 하는 세로형 제품 광고 사진을 만든다. 제품은 화면 아래쪽 중앙에 크게 배치하고 위쪽에는 제목이 들어갈 여백을 둔다. 연한 크림색 스튜디오 배경, 왼쪽에서 들어오는 부드러운 빛, 자연스러운 접촉 그림자. 제품의 외형, 뚜껑 구조, 색상과 기존 로고를 유지한다.
-상단에 "매일의 온도를 담다"를 정확히 한 번 표시한다. 짙은 갈색의 읽기 쉬운 굵은 고딕체로 표현한다. 기존 제품 라벨과 지정한 제목 외에 새 문구를 추가하지 않는다.
+Create a vertical product advertising photo with the tumbler from Image 1 as the hero. Place the product large in the lower center of the frame and leave empty space at the top for a headline. Pale cream studio background, soft light from the left, natural contact shadow. Keep the product's shape, lid structure, colors and existing logo.
+Display the Korean headline "매일의 온도를 담다" exactly once at the top, in a legible bold dark-brown sans-serif typeface. Do not add any text other than the existing product label and this headline.
 ```
 
 설정 제안: Sunburst, `size="1024x1536"`, `quality="high"`, `output_format="png"`. 검수는 제목 철자·횟수와 제품 로고/형상을 우선한다.
@@ -16,7 +16,7 @@
 ## 배경 제거
 
 ```text
-이미지 1의 제품만 분리하여 완전히 투명한 배경에 놓는다. 제품 전체가 잘리지 않도록 중앙에 배치하고 주변에 여백을 남긴다. 제품 모양, 비율, 색과 라벨 문구를 유지한다. 외곽선의 흰 테두리나 색 번짐 없이 깨끗하게 분리한다. 단색 배경이나 체크무늬를 그리지 않는다. 새 그림자를 추가하지 않는다.
+Isolate only the product from Image 1 and place it on a fully transparent background. Center the whole product with margin around it so nothing is cropped. Keep the product's shape, proportions, colors and label text. Cut it out cleanly, with no white fringe or color bleed along the edges. Do not draw a solid-color or checkerboard background. Do not add new shadows.
 ```
 
 설정 제안: Flare, `size="1024x1536"`, `quality="medium"`, `background="transparent"`, `output_format="png"`. PNG에는 `output_compression`을 넣지 않는다. 결과의 배경 알파와 반투명 경계를 확인한다.
@@ -24,7 +24,7 @@
 ## 다중 참조 의상 편집
 
 ```text
-이미지 1을 편집 원본으로 사용한다. 이미지 1의 인물에게 이미지 2의 재킷만 입힌다. 재킷의 디자인과 소재는 이미지 2를 따르되 이미지 1의 자세에 맞게 옷의 주름, 원근과 그림자를 자연스럽게 조정한다. 얼굴, 피부색, 체형, 표정, 머리 모양, 손의 위치와 원래 바지는 유지한다. 배경, 카메라 각도와 프레이밍은 바꾸지 않는다.
+Use Image 1 as the edit source. Dress the person in Image 1 in the jacket from Image 2, changing nothing else about the outfit. Follow Image 2 for the jacket's design and material, but adapt its folds, perspective and shadows naturally to the pose in Image 1. Keep the face, skin tone, body shape, expression, hairstyle, hand positions and original pants. Do not change the background, camera angle or framing.
 ```
 
 설정 제안: 정밀도 우선이면 Sunburst, `quality="high"`, 크기는 유효한 원본 규격. 원본에 바지가 보이는지 등 실제 참조를 확인한 뒤 보존 목록을 조정한다.
@@ -34,7 +34,7 @@
 과학 도표는 대상 독자·학습 목표·필수 구성 요소·정확한 라벨·관계를 먼저 확정한다. 숫자나 인용이 필요한데 없으면 사실처럼 만들어 넣지 않는다. 시안용 가상 데이터라면 명확히 표시한다.
 
 ```text
-초등학생을 위한 가로형 학습 도표를 만든다. 제목은 "물의 순환"이다. 바다에서 수증기가 올라가는 증발, 구름이 생기는 응결, 비가 내리는 강수, 물이 강을 따라 바다로 돌아가는 흐름을 보여준다. 각 과정의 화살표 방향이 실제 이동 방향과 일치하도록 배치한다. 라벨은 "증발", "응결", "강수", "지표 흐름"이다. 흰 배경, 일관된 평면 아이콘, 충분한 여백과 큰 글자를 사용한다.
+Create a landscape educational diagram for elementary school students, titled "물의 순환". Show water vapor rising from the ocean (evaporation), clouds forming (condensation), rain falling (precipitation), and water flowing along a river back to the ocean (surface runoff). Point every arrow in the actual direction of movement. Use exactly these Korean labels: "증발", "응결", "강수", "지표 흐름". White background, consistent flat icons, generous spacing and large text.
 ```
 
 설정 제안: Sunburst, `size="1536x1024"`, `quality="high"`. 예쁜 그림 여부와 별도로 과학적 관계와 모든 라벨을 검수한다. 실제 수업 목적에 필요한 과정이 빠지지 않았는지 확인한다.

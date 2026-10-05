@@ -20,12 +20,12 @@ The skills **write prompts and plans; they do not call any generation API**. You
 | [ai-video-production](ai-video-production/SKILL.md) | Routing decision and production brief | Choosing skills and carrying context across analysis, previs, image and prompt stages | English |
 | [video-ad-analyzer](video-ad-analyzer/SKILL.md) | Analysis timeline/JSON, creative plan, Seedance prompt | Analyzing viral ads, Reels, Shorts or UGC by cut, action and dialogue, and adapting them to a new product or script. Optional local WhisperX transcription | Mostly Korean |
 | [blender-previs-to-video](blender-previs-to-video/SKILL.md) | Blender primitive previs, reference clip, comparison notes | Controlling camera, motion, contact and timing with a previs reference, then diagnosing generated results | English |
-| [sd25-pe](sd25-pe/SKILL.md) | **Video** prompt: Seedance 2.5 | Scene, reference, keyframe, blockout, edit and extension prompts. Final prompts are always in English | English |
+| [sd25-pe](sd25-pe/SKILL.md) | **Video** prompt: Seedance 2.5 | Scene, reference, keyframe, blockout, edit and extension prompts | English |
 | [h3-prompt-writing](h3-prompt-writing/SKILL.md) | **Video** prompt: MiniMax H3 | Text, first/last frame and full image/video/audio reference prompts with H3 fields and tags | English |
 | [wan3-prompt-writing](wan3-prompt-writing/SKILL.md) | **Video** prompt: Wan 3.0 | Text-to-video, image-to-video, reference, sound and multi-shot prompts | English |
 | [gpt-image-25](gpt-image-25/SKILL.md) | **Still image** prompt and settings: GPT Image 2.5 | Product sheets, backgrounds, keyframes, reference compositing and edits. **Not a video skill** | Mostly Korean |
 
-Agents can apply skills whose instructions are written in Korean to requests in any language.
+Agents can apply skills whose instructions are written in Korean to requests in any language. Every skill writes its final copyable prompts in English, whatever the request language; supplied dialogue and on-screen text stay verbatim.
 
 ### How the skills fit together
 

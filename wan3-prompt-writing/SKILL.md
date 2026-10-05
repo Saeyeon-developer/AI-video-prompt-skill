@@ -7,7 +7,7 @@ description: Write and refine Wan 3.0 prompts from scene ideas and image/video r
 
 Convert the user's creative intent into a prompt the model can execute reliably. Preserve the requested subject, action, setting, mood, style, constraints, and continuity. Add only compatible details that resolve underspecification; never replace the concept with a different one.
 
-User instructions override this skill's writing defaults, including language, format, and creative choices. Complete an actionable rewrite using context and reasonable assumptions. Apply later corrections to the affected parts while preserving the remaining brief. Prompt writing alone does not authorize generation, uploads, or environment changes.
+User instructions override this skill's writing defaults, including format and creative choices, except that the final model prompt must always be written in English. Complete an actionable rewrite using context and reasonable assumptions. Apply later corrections to the affected parts while preserving the remaining brief. Prompt writing alone does not authorize generation, uploads, or environment changes.
 
 ## Choose the generation mode
 
@@ -45,7 +45,7 @@ For detailed mode formulas, camera intent, dialogue/audio handling, and prompt r
 
 ## Output contract
 
-Default to a single heading, `Wan 3.0 prompt`, followed by one fenced text block containing only the final model prompt. Write the model prompt in English for copy-ready consistency unless the user requests another language; preserve quoted dialogue in the requested spoken language.
+Default to a single heading, `Wan 3.0 prompt`, followed by one fenced text block containing only the final model prompt. Always write the model prompt in English, regardless of the user's language or any requested prompt language. Do not write the prompt body in Korean or another language. Preserve quoted dialogue and visible text verbatim in their requested language inside the otherwise English prompt.
 
 Add a short `Assumptions` note after the prompt only when a material choice had to be inferred. If the user asks for prompt-only output, return only the prompt. When the user requests alternatives, vary one meaningful dimension per version and label that difference rather than rewriting arbitrarily.
 

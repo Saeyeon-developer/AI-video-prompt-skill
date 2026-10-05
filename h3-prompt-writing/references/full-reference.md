@@ -1,6 +1,6 @@
 # H3 full-reference mode (Ref2VA)
 
-Read [shared syntax](shared-syntax.md) for shots, camera, speakers, dialogue, and sound. This guide adds reference semantics and format differences. Use English by default, preserving dialogue, lyrics, and visible text unless the user requests translation/rewriting. Keep field names and fixed markers unchanged.
+Read [shared syntax](shared-syntax.md) for shots, camera, speakers, dialogue, and sound. This guide adds reference semantics and format differences. Always write in English, regardless of the user's language or any requested prompt language, preserving dialogue, lyrics, and visible text verbatim unless the user requests translation/rewriting. Keep field names and fixed markers unchanged.
 
 ## Six fields, in order
 

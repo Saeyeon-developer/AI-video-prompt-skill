@@ -11,12 +11,14 @@ Identify the requested deliverable and current stage, then use the smallest rele
 
 1. **Ad reference analysis or dialogue-led recreation:** Use `video-ad-analyzer` for cuts, action, speech evidence and the relationships that drive the screen. Deliver analysis alone when requested. For a new script/product, create a separate semantic plan and pass it to the selected model writer; Seedance 2.5 uses `sd25-pe`. Original timestamps remain evidence, not fixed timing for rewritten dialogue.
 2. **Previs or motion control:** Use the catalog's Blender workflow for reference analysis, primitive blocking, camera/action control, render review, and comparison with generated video. If the request is analysis-only, deliver the analysis without assuming scene creation is authorized.
-3. **Video prompt:** Use the explicitly selected video model's writer. Keep its reference identifiers, field order, prompt language rules and output format. A shared brief can feed several requested model writers, but their final prompts remain separate.
+3. **Video prompt:** Use the explicitly selected video model's writer. Keep its reference identifiers, field order and output format. A shared brief can feed several requested model writers, but their final prompts remain separate.
 4. **Still-image assets:** Use the image writer only when the user needs an image prompt or image work, such as a product sheet, background, keyframe or edit. A still image for a video project is still an image deliverable. Image-to-video prompting goes to the selected video model writer.
 5. **Generation or submission:** Prompt skills supply instructions, not a generation service. Use a separate available execution capability only when the user's request includes that action. Preserve an established manual-submission workflow.
 6. **Feedback:** Compare the reference, actual submitted inputs and result. Distinguish geometry/contact, motion/timing, identity/surfaces and appearance. Route a confirmed cause to the affected previs, image asset or prompt, then verify the changed part.
 
 Use the user's model choice and prior decisions. If no model has been chosen, continue independent reference analysis, asset planning or previs work. Ask for a model only when a model-specific deliverable depends on that choice; do not silently choose one or force every project through Blender.
+
+Every final copyable prompt, for video or still images, is written in English regardless of the user's language or a requested prompt language. Supplied dialogue, quoted words and visible text stay verbatim in their original language inside the English prompt. Explanations, analysis and handoff notes may follow the user's language.
 
 ## Carry context between stages
 
