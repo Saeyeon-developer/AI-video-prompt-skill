@@ -1,0 +1,4 @@
+interface:
+  display_name: "영상 메타데이터 정리"
+  short_description: "MP4·MOV의 식별 메타데이터를 로컬에서 정리하고 잔여 정보 검사"
+  default_prompt: "$video-scrub을 사용해 이 영상의 메타데이터를 확인하고 원본을 보존한 정리본과 검증 결과를 만들어 주세요."

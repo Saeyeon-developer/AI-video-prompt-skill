@@ -2,7 +2,7 @@
 
 > [English README](README.md) is the maintained version. This Korean guide may lag behind it.
 
-영상 제작에 필요한 광고 레퍼런스 분석, 프리비즈, 모델별 영상 프롬프트, 보조 이미지 작업을 제공하는 통합 스킬 모음입니다. Git clone 또는 ZIP으로 받은 파일만으로 지침을 사용할 수 있습니다. 실행 도구는 아래의 작업별 요구사항에 따라 별도로 준비합니다.
+영상 제작에 필요한 광고 레퍼런스 분석, 프리비즈, 모델별 영상 프롬프트, 보조 이미지 작업과 로컬 영상 메타데이터 정리를 제공하는 통합 스킬 모음입니다. Git clone 또는 ZIP으로 받은 파일만으로 지침을 사용할 수 있습니다. 실행 도구는 아래의 작업별 요구사항에 따라 별도로 준비합니다.
 
 **AI가 처음 읽을 문서:** [AGENTS.md](AGENTS.md). **어떤 스킬을 쓸지 판단할 진입점:** [ai-video-production](ai-video-production/SKILL.md). 전체 분류와 사용 조건은 [스킬 목록](ai-video-production/references/skill-catalog.md)이 기준입니다.
 
@@ -12,6 +12,7 @@
 |---|---|---|
 | 작업 선택·단계 연결 | [ai-video-production](ai-video-production/SKILL.md) | 광고 분석, 프리비즈, 영상 프롬프트, 이미지 에셋 작업을 구분하고 필요한 스킬 선택 |
 | 광고 분석·재창작 설계 | [video-ad-analyzer](video-ad-analyzer/SKILL.md) | 컷·행동·대사 분석, WhisperX 전사·정렬, 새 멘트에 맞춘 연출 계획과 Seedance 프롬프트 |
+| 메타데이터 정리 | [video-scrub](video-scrub/SKILL.md) | 로컬 MP4·MOV의 식별 메타데이터 정리와 잔여 정보 검사. 다른 스킬 없이 독립 사용하며 코덱·HDR·자막 제한 확인 |
 | 프리비즈·결과 분석 | [blender-previs-to-video](blender-previs-to-video/SKILL.md) | 원본 구도·동작 분석, Blender 기본 도형 제작, 접촉·회전 검토, 생성 결과 비교 |
 | 영상 프롬프트 | [sd25-pe](sd25-pe/SKILL.md) | Seedance 2.5의 장면·참조·프리비즈·편집·연장 프롬프트 |
 | 영상 프롬프트 | [h3-prompt-writing](h3-prompt-writing/SKILL.md) | MiniMax H3의 텍스트·키프레임·전체 참조 모드와 전용 필드·태그 |
@@ -24,7 +25,7 @@
 
 ## 새 환경에서 시작하기
 
-1. 저장소를 clone하거나 ZIP을 풀고 폴더 구조를 유지합니다. 위 7개 스킬 폴더가 배포 단위입니다. `SKILL.md`만 복사하지 말고 각 폴더 안의 `references/`, `scripts/`, `assets/`, `agents/`도 있는 그대로 유지합니다.
+1. 저장소를 clone하거나 ZIP을 풀고 폴더 구조를 유지합니다. 위 8개 스킬 폴더가 배포 단위입니다. `SKILL.md`만 복사하지 말고 각 폴더 안의 `references/`, `scripts/`, `assets/`, `agents/`도 있는 그대로 유지합니다.
 2. 이 폴더를 AI 작업 공간으로 열고 `AGENTS.md`를 읽도록 요청합니다. 다른 작업 공간에서는 **실제 다운로드 위치**의 `AGENTS.md` 경로를 알려줍니다. 예: “`<다운로드한 폴더>/AGENTS.md`를 읽고 첨부 광고의 컷과 대사를 분석해 주세요.” 꺾쇠 부분은 실제 경로로 바꿉니다.
 3. 모델이 정해진 프롬프트 요청은 해당 `SKILL.md`로 바로 들어갑니다. 분석·프리비즈·프롬프트를 연결하거나 스킬 선택이 필요하면 `ai-video-production`에서 시작합니다.
 4. 아래 표에서 필요한 도구만 준비합니다. 스킬 파일을 다운로드해도 Python, FFmpeg, Blender, WhisperX 환경이나 모델 가중치가 자동 설치되지는 않습니다.
@@ -35,14 +36,14 @@
 $repo = 'C:/path/to/video-skill'
 $dest = Join-Path $HOME '.claude/skills'
 New-Item -ItemType Directory -Force $dest | Out-Null
-foreach ($s in 'ai-video-production','video-ad-analyzer','blender-previs-to-video','sd25-pe','h3-prompt-writing','wan3-prompt-writing','gpt-image-25') {
+foreach ($s in 'ai-video-production','video-ad-analyzer','blender-previs-to-video','sd25-pe','h3-prompt-writing','wan3-prompt-writing','gpt-image-25','video-scrub') {
   New-Item -ItemType Junction -Path (Join-Path $dest $s) -Target (Join-Path $repo $s)
 }
 ```
 
 Claude Code는 이미지는 읽지만 영상 재생과 음성 청취는 하지 못합니다. 영상 분석은 프레임·컨택트시트 추출 후 이미지로 읽고, 음성은 WhisperX 전사 초안으로만 다룹니다. 각 스킬의 `agents/openai.yaml`은 Codex용 메타데이터이며 Claude Code는 무시합니다.
 
-Codex 자동 발견을 사용하려면 7개 스킬 폴더를 프로젝트의 `.agents/skills/` 또는 개인 `~/.agents/skills/` 아래에 **나란히** 복사합니다. 통합 모음 전체를 하나의 스킬 폴더로 중첩하지 않습니다. 설치 후 구조는 다음과 같습니다. [공식 스킬 발견 경로 안내](https://learn.chatgpt.com/docs/build-skills)
+Codex 자동 발견을 사용하려면 8개 스킬 폴더를 프로젝트의 `.agents/skills/` 또는 개인 `~/.agents/skills/` 아래에 **나란히** 복사합니다. 통합 모음 전체를 하나의 스킬 폴더로 중첩하지 않습니다. 설치 후 구조는 다음과 같습니다. [공식 스킬 발견 경로 안내](https://learn.chatgpt.com/docs/build-skills)
 
 ```text
 .agents/skills/
@@ -52,7 +53,8 @@ Codex 자동 발견을 사용하려면 7개 스킬 폴더를 프로젝트의 `.a
 ├── sd25-pe/SKILL.md
 ├── h3-prompt-writing/SKILL.md
 ├── wan3-prompt-writing/SKILL.md
-└── gpt-image-25/SKILL.md
+├── gpt-image-25/SKILL.md
+└── video-scrub/SKILL.md
 ```
 
 위 트리는 진입점만 표시하며 각 폴더의 보조 파일도 함께 복사해야 합니다. 루트 `README.md`와 `AGENTS.md`는 모음의 사용·관리 안내이므로 대상 프로젝트의 기존 `AGENTS.md`를 덮어쓸 필요가 없습니다. 일부 스킬만 설치할 수도 있지만 라우터만 복사하면 다른 스킬의 기능이 포함되지 않습니다. 광고 분석만 할 때는 `video-ad-analyzer`, Seedance 2.5용 재창작 프롬프트까지 작성할 때는 `sd25-pe`도 함께 설치합니다.
@@ -67,6 +69,7 @@ Codex 자동 발견을 사용하려면 7개 스킬 폴더를 프로젝트의 `.a
 | 영상 직접 관찰 | 호스트의 영상·이미지·음성 관찰 기능 | 접근 가능한 원본을 제공. 음성 확인이 안 되면 시각 분석을 진행하고 음향은 미확인으로 기록 |
 | 프레임·컨택트시트·오디오 추출 | Python 3.11+, PATH의 `ffmpeg`·`ffprobe`, 라벨용 폰트 | [로컬 관찰 절차](video-ad-analyzer/references/local-observation.md). 폰트 자동 탐색 실패 시 `--font` 지정 |
 | 분석 JSON·이미지 설정 검사 | Python 3.11+ 표준 라이브러리 | `video-ad-analyzer/scripts/check_analysis.py`, `gpt-image-25/scripts/check_settings.py`의 `--help` 확인 |
+| 로컬 영상 메타데이터 정리·검증 | Node.js 18+, PATH의 FFmpeg·ffprobe | `video-scrub`만 독립 사용 가능. npm 패키지·Python·API 키 불필요. [코덱·HDR·자막 및 검증 한계](video-scrub/references/limitations.md) 확인 |
 | 로컬 음성 전사·정렬(선택) | 별도 Python 3.11·WhisperX·모델 캐시, FFmpeg/ffprobe | [전사 환경 구성](video-ad-analyzer/references/speech-transcription.md). 제공 설치 스크립트는 Windows/NVIDIA 기준이며 `uv` 필요 |
 | Blender 프리비즈 제작·렌더(선택) | Blender와 해당 환경에서 사용할 실행·제어 수단 | 현재 환경에서 실행 파일/연결을 확인. 영상 인코딩·확인 도구는 요청한 출력에 맞춰 준비 |
 
@@ -106,3 +109,5 @@ python video-ad-analyzer/scripts/transcribe_video.py --help
 세 영상 모델 스킬은 프롬프트를 작성하며 생성 서비스나 API를 직접 운영하지 않습니다. 실제 생성·업로드는 사용자의 해당 요청과 이용 가능한 실행 도구에 따릅니다. 이미지 스킬 역시 프롬프트만 요청한 경우 이미지를 생성하지 않습니다.
 
 각 모델 스킬의 `references/sources.md`는 참고 자료와 자체 작성 지침을 구분합니다. 공급사의 공식 배포판이나 생성 품질 보증을 의미하지 않습니다. 이 저장소는 [Apache License 2.0](LICENSE)을 따르며, `references/sources.md`에 인용된 공급사 가이드와 외부 자료는 각자의 조건을 따릅니다.
+
+`video-scrub`은 [eternityspring/reelbench-skills](https://github.com/eternityspring/reelbench-skills)의 Apache-2.0 자료를 편입했습니다. [출처 문서](video-scrub/references/sources.md)에 원본 리비전과 변경 범위를 기록했으며 독립 배포를 위해 스킬 폴더에도 라이선스를 포함합니다. 식별 메타데이터 정리는 완전한 익명화나 워터마크 제거를 보장하지 않습니다.

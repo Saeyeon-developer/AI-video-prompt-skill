@@ -1,6 +1,6 @@
 ---
 name: ai-video-production
-description: Route AI video production work to the right skill for viral-ad analysis and dialogue-led recreation, Blender previs, Seedance 2.5, MiniMax H3, Wan 3.0, or supporting GPT Image 2.5 still images. Use for multi-stage production, reference planning, or choosing among these skills; go directly to the named model skill for a simple model-specific prompt request.
+description: Route AI video production work to the right skill for ad analysis and dialogue-led recreation, Blender previs, Seedance 2.5, MiniMax H3, Wan 3.0, supporting GPT Image 2.5 still images, or local video metadata cleanup. Use for multi-stage production, reference planning, or choosing among these skills; go directly to the named skill for a simple specific request.
 ---
 
 # AI Video Production
@@ -15,6 +15,7 @@ Identify the requested deliverable and current stage, then use the smallest rele
 4. **Still-image assets:** Use the image writer only when the user needs an image prompt or image work, such as a product sheet, background, keyframe or edit. A still image for a video project is still an image deliverable. Image-to-video prompting goes to the selected video model writer.
 5. **Generation or submission:** Prompt skills supply instructions, not a generation service. Use a separate available execution capability only when the user's request includes that action. Preserve an established manual-submission workflow.
 6. **Feedback:** Compare the reference, actual submitted inputs and result. Distinguish geometry/contact, motion/timing, identity/surfaces and appearance. Route a confirmed cause to the affected previs, image asset or prompt, then verify the changed part.
+7. **Metadata cleanup:** Use `video-scrub` when requested to inspect or remove identifying metadata from a local MP4/MOV. This is an independent file-processing stage, not a model prompt or shot analysis. Preserve the original and follow the skill's codec/HDR/caption and verification limits. Do not add cleanup automatically to every production task.
 
 Use the user's model choice and prior decisions. If no model has been chosen, continue independent reference analysis, asset planning or previs work. Ask for a model only when a model-specific deliverable depends on that choice; do not silently choose one or force every project through Blender.
 

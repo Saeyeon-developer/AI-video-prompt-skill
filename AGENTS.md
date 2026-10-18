@@ -1,6 +1,6 @@
 # AI video production skills: agent instructions
 
-This repository is a collection of seven independent skills, not one skill. Each top-level skill folder has a `SKILL.md` entrypoint plus optional `references/`, `scripts/`, `assets/` and `agents/`. The [skill catalog](ai-video-production/references/skill-catalog.md) is the source of truth for which folders are active skills and what each one produces.
+This repository is a collection of eight independent skills, not one skill. Each top-level skill folder has a `SKILL.md` entrypoint plus optional `references/`, `scripts/`, `assets/` and `agents/`. The [skill catalog](ai-video-production/references/skill-catalog.md) is the source of truth for which folders are active skills and what each one produces.
 
 ## Using the skills
 
@@ -9,6 +9,7 @@ This repository is a collection of seven independent skills, not one skill. Each
 - Every skill writes its final copyable prompt in English, regardless of the user's language or a requested prompt language. Spoken dialogue, lyrics and in-scene or rendered text are the exception: write them in the language in which they must be heard or seen (supplied wording verbatim, newly drafted lines in the intended language), never translated into English because the prompt is English. Explanations and analysis may follow the user's language.
 - `gpt-image-25` produces **still images** (prompts and edits for product sheets, backgrounds and keyframes). It is never a video-prompt writer; image-to-video prompts belong to the selected video model's skill.
 - `video-ad-analyzer` handles ad cuts, action, speech evidence and dialogue-led recreation. Analysis can be delivered without a model writer; final Seedance 2.5 prompts use `sd25-pe`.
+- `video-scrub` independently inspects and cleans local video metadata, then verifies known residues. It requires Node.js 18+ and FFmpeg/ffprobe, preserves the original, and does not guarantee complete anonymity or watermark removal. Follow its codec/HDR/caption limits.
 - Resolve links relative to the file that contains them, and scripts relative to their skill folder. If a referenced sibling skill is absent, look for the same identifier among the host's installed skills; otherwise report the missing capability instead of inventing model syntax.
 - Check only the tools the current stage needs. Prompt writing needs no SDK, API key or Python. Local video extraction needs Python 3.11+ and FFmpeg/ffprobe. WhisperX transcription and Blender are separate optional capabilities. When a tool is unavailable, say so and continue the independent work.
 - For transcription, follow the analyzer's [speech runtime guide](video-ad-analyzer/references/speech-transcription.md). Reuse an existing WhisperX Python and model cache when the user provides or the environment already has them; install a new runtime only when none is available.
