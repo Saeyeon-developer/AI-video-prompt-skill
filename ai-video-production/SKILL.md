@@ -1,6 +1,6 @@
 ---
 name: ai-video-production
-description: Route AI video production work to the right skill for ad analysis and dialogue-led recreation, Blender previs, Seedance 2.5, MiniMax H3, Wan 3.0, supporting GPT Image 2.5 still images, or local video metadata cleanup. Use for multi-stage production, reference planning, or choosing among these skills; go directly to the named skill for a simple specific request.
+description: Route AI video production work to the right skill for ad analysis and dialogue-led recreation, Blender previs, Seedance 2.5, MiniMax H3, Wan 3.0, Kling 4.0, supporting GPT Image 2.5 still images, or local video metadata cleanup. Use for multi-stage production, reference planning, or choosing among these skills; go directly to the named skill for a simple specific request.
 ---
 
 # AI Video Production

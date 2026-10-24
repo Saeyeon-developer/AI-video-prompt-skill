@@ -1,0 +1,4 @@
+interface:
+  display_name: "Kling AI Video Prompting"
+  short_description: "Write and refine English Kling 4.0 video prompts"
+  default_prompt: "Use $kling-4-prompting to turn my idea and references into an English Kling AI video prompt."

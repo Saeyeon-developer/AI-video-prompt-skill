@@ -1,6 +1,6 @@
 # AI video production skills: agent instructions
 
-This repository is a collection of eight independent skills, not one skill. Each top-level skill folder has a `SKILL.md` entrypoint plus optional `references/`, `scripts/`, `assets/` and `agents/`. The [skill catalog](ai-video-production/references/skill-catalog.md) is the source of truth for which folders are active skills and what each one produces.
+This repository is a collection of nine independent skills, not one skill. Each top-level skill folder has a `SKILL.md` entrypoint plus optional `references/`, `scripts/`, `assets/` and `agents/`. The [skill catalog](ai-video-production/references/skill-catalog.md) is the source of truth for which folders are active skills and what each one produces.
 
 ## Using the skills
 

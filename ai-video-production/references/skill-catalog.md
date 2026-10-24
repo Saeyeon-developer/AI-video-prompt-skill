@@ -11,6 +11,7 @@ This is the maintained routing index for the `video-skill` workspace. Select by 
 | [sd25-pe](../../sd25-pe/SKILL.md) | **Video** prompt: Seedance 2.5 | SD/Seedance scene prompts, references, previs, keyframes, editing or extension prompts | Model-specific copyable text and reference roles; no service operation |
 | [h3-prompt-writing](../../h3-prompt-writing/SKILL.md) | **Video** prompt: MiniMax H3 | H3 text/keyframe modes or full image/video/audio reference prompts | Mode-specific fields, native subject/media labels and retention relationships; no service operation |
 | [wan3-prompt-writing](../../wan3-prompt-writing/SKILL.md) | **Video** prompt: Wan 3.0 | Wan text-to-video, image-to-video, references, sound or multi-shot prompts | Wan prompt and applicable reference identifiers; no service operation |
+| [kling-4-prompting](../../kling-4-prompting/SKILL.md) | **Video** prompt: Kling 4.0 / Flash | Kling scene/image/video/storyboard prompts, reference roles, keyframes, dialogue, subtitles, footage edits or prompt troubleshooting | English prompt and applicable mode/settings notes; uses the Kling writer after shared analysis, previs or still-asset preparation. No video generation, API operation or automatic substitution for other Kling versions |
 | [gpt-image-25](../../gpt-image-25/SKILL.md) | **Still image**: GPT Image 2.5 | Image-generation/edit prompts, product sheets, backgrounds, keyframes, visible text or reference image edits | Still-image prompt/settings; actual image work only when requested and supported by available tools. Never a video writer |
 
 `SD` means Seedance only when the conversation establishes that meaning. In another context it may refer to a different model; resolve a material ambiguity rather than silently routing it. `H3` here means MiniMax H3, not every product offered by a similarly named platform.
@@ -28,12 +29,14 @@ This is the maintained routing index for the `video-skill` workspace. Select by 
 | “제품 앞·뒷면만 있는 이미지 시트용 프롬프트” | `gpt-image-25`; still-image task |
 | “이 제품 사진으로 Wan 영상을 만들 프롬프트” | `wan3-prompt-writing`; not the still-image writer |
 | “H3에서 참조 매핑 후 Subject/Video를 어떻게 쓰지?” | `h3-prompt-writing`, relevant native syntax/reference guide |
+| “Kling 4.0에서 이 사진을 움직이는 영상 프롬프트로 써줘” | `kling-4-prompting`; use the supplied image and preserve its intended attributes; no automatic generation |
+| “Kling으로 이 광고의 제품과 대사를 바꿔 재창작할 프롬프트를 써줘” | `video-ad-analyzer` for ad evidence and adaptation, then `kling-4-prompting` for the selected Kling model; no automatic generation |
 | “같은 프리비즈를 SD, H3, Wan용으로 각각 작성해줘” | Shared reference-role brief, then each of the three requested video writers |
 | “모델은 나중에 정하고 우선 프리비즈부터” | Blender workflow; do not block on model selection |
 
 ## Distribution and supporting files
 
-Production routing and installation use the eight active skill directories above. Keep them as siblings to preserve the relative links in this catalog. Copy each complete folder, including its supporting resources; copying only `SKILL.md` is insufficient. A router installed alone can use skills available by the same identifiers through the host, but does not include their capabilities itself. `video-scrub` can be distributed and used alone; keep its bundled license and source notes with it.
+Production routing and installation use the nine active skill directories above. Keep them as siblings to preserve the relative links in this catalog. Copy each complete folder, including its supporting resources; copying only `SKILL.md` is insufficient. A router installed alone can use skills available by the same identifiers through the host, but does not include their capabilities itself. `video-scrub` and `kling-4-prompting` can each be distributed and used alone; keep each one's bundled license and source notes with it.
 
 `README.md` is the human entrypoint and setup guide. Root `AGENTS.md` provides workspace instructions. A selected skill's `references/` holds conditional working guidance; `references/sources.md` holds attribution and scope. None of these imply that every file should be loaded for every request.
 

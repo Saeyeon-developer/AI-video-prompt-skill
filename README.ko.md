@@ -17,6 +17,7 @@
 | 영상 프롬프트 | [sd25-pe](sd25-pe/SKILL.md) | Seedance 2.5의 장면·참조·프리비즈·편집·연장 프롬프트 |
 | 영상 프롬프트 | [h3-prompt-writing](h3-prompt-writing/SKILL.md) | MiniMax H3의 텍스트·키프레임·전체 참조 모드와 전용 필드·태그 |
 | 영상 프롬프트 | [wan3-prompt-writing](wan3-prompt-writing/SKILL.md) | Wan 3.0의 T2V·I2V·참조·오디오·멀티샷 프롬프트 |
+| 영상 프롬프트 | [kling-4-prompting](kling-4-prompting/SKILL.md) | Kling 4.0·Flash 모드 선택, 참조·키프레임·대사·자막·기존 영상 편집 프롬프트와 문제 수정 |
 | **정지 이미지** | [gpt-image-25](gpt-image-25/SKILL.md) | GPT Image 2.5용 이미지 생성·편집 프롬프트와 설정; 제품 시트·배경·키프레임 준비 |
 
 모든 스킬은 요청 언어와 관계없이 최종 프롬프트를 영어로 작성합니다. 단, 대사와 화면·이미지에 보일 문구는 영어로 번역하지 않고 실제로 들리거나 보일 언어(예: 한국어 대사는 한국어) 그대로 씁니다.
@@ -25,7 +26,7 @@
 
 ## 새 환경에서 시작하기
 
-1. 저장소를 clone하거나 ZIP을 풀고 폴더 구조를 유지합니다. 위 8개 스킬 폴더가 배포 단위입니다. `SKILL.md`만 복사하지 말고 각 폴더 안의 `references/`, `scripts/`, `assets/`, `agents/`도 있는 그대로 유지합니다.
+1. 저장소를 clone하거나 ZIP을 풀고 폴더 구조를 유지합니다. 위 9개 스킬 폴더가 배포 단위입니다. `SKILL.md`만 복사하지 말고 각 폴더 안의 `references/`, `scripts/`, `assets/`, `agents/`도 있는 그대로 유지합니다.
 2. 이 폴더를 AI 작업 공간으로 열고 `AGENTS.md`를 읽도록 요청합니다. 다른 작업 공간에서는 **실제 다운로드 위치**의 `AGENTS.md` 경로를 알려줍니다. 예: “`<다운로드한 폴더>/AGENTS.md`를 읽고 첨부 광고의 컷과 대사를 분석해 주세요.” 꺾쇠 부분은 실제 경로로 바꿉니다.
 3. 모델이 정해진 프롬프트 요청은 해당 `SKILL.md`로 바로 들어갑니다. 분석·프리비즈·프롬프트를 연결하거나 스킬 선택이 필요하면 `ai-video-production`에서 시작합니다.
 4. 아래 표에서 필요한 도구만 준비합니다. 스킬 파일을 다운로드해도 Python, FFmpeg, Blender, WhisperX 환경이나 모델 가중치가 자동 설치되지는 않습니다.
@@ -36,14 +37,14 @@
 $repo = 'C:/path/to/video-skill'
 $dest = Join-Path $HOME '.claude/skills'
 New-Item -ItemType Directory -Force $dest | Out-Null
-foreach ($s in 'ai-video-production','video-ad-analyzer','blender-previs-to-video','sd25-pe','h3-prompt-writing','wan3-prompt-writing','gpt-image-25','video-scrub') {
+foreach ($s in 'ai-video-production','video-ad-analyzer','blender-previs-to-video','sd25-pe','h3-prompt-writing','wan3-prompt-writing','kling-4-prompting','gpt-image-25','video-scrub') {
   New-Item -ItemType Junction -Path (Join-Path $dest $s) -Target (Join-Path $repo $s)
 }
 ```
 
 Claude Code는 이미지는 읽지만 영상 재생과 음성 청취는 하지 못합니다. 영상 분석은 프레임·컨택트시트 추출 후 이미지로 읽고, 음성은 WhisperX 전사 초안으로만 다룹니다. 각 스킬의 `agents/openai.yaml`은 Codex용 메타데이터이며 Claude Code는 무시합니다.
 
-Codex 자동 발견을 사용하려면 8개 스킬 폴더를 프로젝트의 `.agents/skills/` 또는 개인 `~/.agents/skills/` 아래에 **나란히** 복사합니다. 통합 모음 전체를 하나의 스킬 폴더로 중첩하지 않습니다. 설치 후 구조는 다음과 같습니다. [공식 스킬 발견 경로 안내](https://learn.chatgpt.com/docs/build-skills)
+Codex 자동 발견을 사용하려면 9개 스킬 폴더를 프로젝트의 `.agents/skills/` 또는 개인 `~/.agents/skills/` 아래에 **나란히** 복사합니다. 통합 모음 전체를 하나의 스킬 폴더로 중첩하지 않습니다. 설치 후 구조는 다음과 같습니다. [공식 스킬 발견 경로 안내](https://learn.chatgpt.com/docs/build-skills)
 
 ```text
 .agents/skills/
@@ -53,6 +54,7 @@ Codex 자동 발견을 사용하려면 8개 스킬 폴더를 프로젝트의 `.a
 ├── sd25-pe/SKILL.md
 ├── h3-prompt-writing/SKILL.md
 ├── wan3-prompt-writing/SKILL.md
+├── kling-4-prompting/SKILL.md
 ├── gpt-image-25/SKILL.md
 └── video-scrub/SKILL.md
 ```
@@ -106,8 +108,10 @@ python video-ad-analyzer/scripts/transcribe_video.py --help
 
 ## 실행과 출처
 
-세 영상 모델 스킬은 프롬프트를 작성하며 생성 서비스나 API를 직접 운영하지 않습니다. 실제 생성·업로드는 사용자의 해당 요청과 이용 가능한 실행 도구에 따릅니다. 이미지 스킬 역시 프롬프트만 요청한 경우 이미지를 생성하지 않습니다.
+네 영상 모델 스킬은 프롬프트를 작성하며 생성 서비스나 API를 직접 운영하지 않습니다. 실제 생성·업로드는 사용자의 해당 요청과 이용 가능한 실행 도구에 따릅니다. 이미지 스킬 역시 프롬프트만 요청한 경우 이미지를 생성하지 않습니다.
 
-각 모델 스킬의 `references/sources.md`는 참고 자료와 자체 작성 지침을 구분합니다. 공급사의 공식 배포판이나 생성 품질 보증을 의미하지 않습니다. 이 저장소는 [Apache License 2.0](LICENSE)을 따르며, `references/sources.md`에 인용된 공급사 가이드와 외부 자료는 각자의 조건을 따릅니다.
+각 모델 스킬의 `references/sources.md`는 참고 자료와 자체 작성 지침을 구분합니다. 공급사의 공식 배포판이나 생성 품질 보증을 의미하지 않습니다. 별도 표기가 없는 한 이 저장소는 [Apache License 2.0](LICENSE)을 따르며, `references/sources.md`에 인용된 공급사 가이드와 외부 자료는 각자의 조건을 따릅니다.
+
+`kling-4-prompting`은 [aedev-tools/kling-4-prompting-skill](https://github.com/aedev-tools/kling-4-prompting-skill)을 바탕으로 하며 [MIT 라이선스와 저작권 고지](kling-4-prompting/LICENSE)를 보존합니다. [출처 문서](kling-4-prompting/references/sources.md)에 원본 리비전과 변경 범위를 기록했으며, 독립 사용 시에도 라이선스와 보조 파일을 함께 유지합니다.
 
 `video-scrub`은 [eternityspring/reelbench-skills](https://github.com/eternityspring/reelbench-skills)의 Apache-2.0 자료를 편입했습니다. [출처 문서](video-scrub/references/sources.md)에 원본 리비전과 변경 범위를 기록했으며 독립 배포를 위해 스킬 폴더에도 라이선스를 포함합니다. 식별 메타데이터 정리는 완전한 익명화나 워터마크 제거를 보장하지 않습니다.
