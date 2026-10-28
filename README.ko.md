@@ -110,8 +110,8 @@ python video-ad-analyzer/scripts/transcribe_video.py --help
 
 네 영상 모델 스킬은 프롬프트를 작성하며 생성 서비스나 API를 직접 운영하지 않습니다. 실제 생성·업로드는 사용자의 해당 요청과 이용 가능한 실행 도구에 따릅니다. 이미지 스킬 역시 프롬프트만 요청한 경우 이미지를 생성하지 않습니다.
 
-각 모델 스킬의 `references/sources.md`는 참고 자료와 자체 작성 지침을 구분합니다. 공급사의 공식 배포판이나 생성 품질 보증을 의미하지 않습니다. 별도 표기가 없는 한 이 저장소는 [Apache License 2.0](LICENSE)을 따르며, `references/sources.md`에 인용된 공급사 가이드와 외부 자료는 각자의 조건을 따릅니다.
+각 모델 스킬의 `references/sources.md`는 참고 자료와 자체 작성 지침을 구분합니다. 공급사의 공식 배포판이나 생성 품질 보증을 의미하지 않습니다. 이 저장소는 [Apache License 2.0](LICENSE)을 따르며, `references/sources.md`에 인용된 공급사 가이드와 외부 자료는 각자의 조건을 따릅니다.
 
-`kling-4-prompting`은 [aedev-tools/kling-4-prompting-skill](https://github.com/aedev-tools/kling-4-prompting-skill)을 바탕으로 하며 [MIT 라이선스와 저작권 고지](kling-4-prompting/LICENSE)를 보존합니다. [출처 문서](kling-4-prompting/references/sources.md)에 원본 리비전과 변경 범위를 기록했으며, 독립 사용 시에도 라이선스와 보조 파일을 함께 유지합니다.
+`kling-4-prompting`은 [aedev-tools/kling-4-prompting-skill](https://github.com/aedev-tools/kling-4-prompting-skill)을 바탕으로 하며 이 저장소에서는 Apache-2.0으로 배포합니다. 독립 배포를 위해 스킬 폴더에 라이선스 사본을 두고, 원본의 MIT 저작권·허가 고지는 [NOTICE](kling-4-prompting/NOTICE)에 보존합니다. [출처 문서](kling-4-prompting/references/sources.md)에 원본 리비전과 변경 범위를 기록했으며, 독립 사용 시에도 라이선스·고지와 보조 파일을 함께 유지합니다.
 
 `video-scrub`은 [eternityspring/reelbench-skills](https://github.com/eternityspring/reelbench-skills)의 Apache-2.0 자료를 편입했습니다. [출처 문서](video-scrub/references/sources.md)에 원본 리비전과 변경 범위를 기록했으며 독립 배포를 위해 스킬 폴더에도 라이선스를 포함합니다. 식별 메타데이터 정리는 완전한 익명화나 워터마크 제거를 보장하지 않습니다.

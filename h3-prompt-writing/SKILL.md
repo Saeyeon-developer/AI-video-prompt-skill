@@ -1,6 +1,7 @@
 ---
 name: h3-prompt-writing
 description: Write and refine MiniMax H3 prompts for text, first/last frames, and full image/video/audio references. Use for audiovisual prompt authoring and reference bindings, not operating a generation service.
+license: Apache-2.0
 ---
 
 # H3 Prompt Writing

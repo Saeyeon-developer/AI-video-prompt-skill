@@ -141,8 +141,8 @@ Each model skill's `references/sources.md` separates vendor material from this l
 
 ## License
 
-Unless otherwise noted, licensed under the [Apache License 2.0](LICENSE). Vendor guides and third-party material cited in `references/sources.md` remain under their own terms.
+Licensed under the [Apache License 2.0](LICENSE). Vendor guides and third-party material cited in `references/sources.md` remain under their own terms.
 
-`kling-4-prompting` is adapted from [aedev-tools/kling-4-prompting-skill](https://github.com/aedev-tools/kling-4-prompting-skill). Its [MIT license and copyright notice](kling-4-prompting/LICENSE) are retained; [source notes](kling-4-prompting/references/sources.md) record the pinned revision and adaptations.
+`kling-4-prompting` is adapted from [aedev-tools/kling-4-prompting-skill](https://github.com/aedev-tools/kling-4-prompting-skill). It is distributed here under Apache-2.0, with a license copy in the skill folder for independent distribution; the upstream MIT copyright and permission notice is retained in its [NOTICE](kling-4-prompting/NOTICE). [Source notes](kling-4-prompting/references/sources.md) record the pinned revision and adaptations.
 
 `video-scrub` is adapted from [eternityspring/reelbench-skills](https://github.com/eternityspring/reelbench-skills) under Apache-2.0. Its [source notes](video-scrub/references/sources.md) record the pinned revision and adaptations; a license copy is included in the skill folder for independent distribution.

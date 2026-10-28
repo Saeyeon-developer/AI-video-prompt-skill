@@ -1,13 +1,14 @@
 ---
 name: video-ad-analyzer
-description: Analyze viral ads, Reels, Shorts, and UGC references and turn their dialogue, action, and editing relationships into Seedance prompts for new products or characters. Use for 광고 영상 분석, 바이럴 레퍼런스 분석, 컷별 분석, or reference-based ad prompt writing. Supports analysis-only requests; does not generate or edit video.
+description: Analyze viral ads, Reels, Shorts, and UGC references and turn their dialogue, action, and editing relationships into video prompts for new products or characters, using the selected model's writer (Seedance by default). Use for 광고 영상 분석, 바이럴 레퍼런스 분석, 컷별 분석, or reference-based ad prompt writing. Supports analysis-only requests; does not generate or edit video.
+license: Apache-2.0
 ---
 
 # 광고 영상 분석
 
-원본 관찰을 근거로 새 광고의 대사·행동·화면 전환을 구성하고, 최종적으로 Seedance용 프롬프트로 변환한다. 원본 타임라인은 관찰 근거이며 새 영상의 시간을 고정하는 틀이 아니다. 기본 응답 언어는 한국어로 하되 사용자의 언어 요청을 따른다. 단, 복사해 사용할 최종 프롬프트는 사용자의 언어나 요청한 프롬프트 언어와 관계없이 항상 영어로 작성하고, 대사와 화면 속 문구는 영어로 번역하지 않고 실제로 들리거나 보일 언어 그대로 인용한다. 분석과 프롬프트 작성에 유료 서비스나 생성 API 연결을 요구하지 않는다.
+원본 관찰을 근거로 새 광고의 대사·행동·화면 전환을 구성하고, 최종적으로 선택된 영상 모델의 프롬프트로 변환한다. 모델 지정이 없으면 Seedance를 기본으로 한다. 원본 타임라인은 관찰 근거이며 새 영상의 시간을 고정하는 틀이 아니다. 기본 응답 언어는 한국어로 하되 사용자의 언어 요청을 따른다. 단, 복사해 사용할 최종 프롬프트는 사용자의 언어나 요청한 프롬프트 언어와 관계없이 항상 영어로 작성하고, 대사와 화면 속 문구는 영어로 번역하지 않고 실제로 들리거나 보일 언어 그대로 인용한다. 분석과 프롬프트 작성에 유료 서비스나 생성 API 연결을 요구하지 않는다.
 
-분석만 요청하면 관찰 결과와 재창작에 활용할 관계까지 제공한다. 새 제품·인물·멘트로 재창작하거나 프롬프트를 요청하면 [대사 기반 연출과 Seedance 변환](references/semantic-direction.md)을 읽고 새 대본과 화면의 관계를 먼저 설계한다. 입력이 충분하면 프롬프트까지 완성하고, 새 제품의 기능이나 필수 대사가 빠졌으면 분석을 진행하면서 필요한 정보만 확인한다. 미정 내용을 임의의 제품 효능이나 확정 대사로 채우지 않는다.
+분석만 요청하면 관찰 결과와 재창작에 활용할 관계까지 제공한다. 새 제품·인물·멘트로 재창작하거나 프롬프트를 요청하면 [대사 기반 연출과 프롬프트 변환](references/semantic-direction.md)을 읽고 새 대본과 화면의 관계를 먼저 설계한다. 입력이 충분하면 프롬프트까지 완성하고, 새 제품의 기능이나 필수 대사가 빠졌으면 분석을 진행하면서 필요한 정보만 확인한다. 미정 내용을 임의의 제품 효능이나 확정 대사로 채우지 않는다.
 
 아래 절차는 정밀 분석의 기준이다. 짧은 질문·일부 구간 확인·빠른 의견 요청에는 필요한 부분만 적용하고, 표·JSON·검사 스크립트는 사용자가 완성된 분석 산출물을 원할 때 갖춘다.
 
@@ -55,7 +56,7 @@ description: Analyze viral ads, Reels, Shorts, and UGC references and turn their
 - 미확인 사항과 시간 정밀도의 한계를 필요한 만큼만 적는다.
 - JSON을 저장했다면 `scripts/check_analysis.py <analysis.json>`으로 시간·참조·구간 연결을 검사한다. 표를 JSON에서 만들거나 같은 스크립트의 `--table <timeline.md>`로 생성해 일치를 유지한다. 이 검사는 관찰 내용의 정확성을 보장하지 않는다.
 
-재창작/프롬프트 요청에는 별도의 연출 계획과 Seedance 프롬프트를 제공한다. 원본 분석 JSON을 새 대본으로 덮어쓰지 않는다. 요청하지 않은 영화 평론, 색보정 이론, 마케팅 장문 보고서나 생성 API 호출은 추가하지 않는다.
+재창작/프롬프트 요청에는 별도의 연출 계획과 선택된 모델의 프롬프트를 제공한다. 원본 분석 JSON을 새 대본으로 덮어쓰지 않는다. 요청하지 않은 영화 평론, 색보정 이론, 마케팅 장문 보고서나 생성 API 호출은 추가하지 않는다.
 
 ## 마무리 점검
 

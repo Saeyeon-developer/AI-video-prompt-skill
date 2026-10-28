@@ -1,9 +1,10 @@
 ---
 name: kling-4-prompting
 description: Write, revise, or troubleshoot English Kling AI video prompts from scene ideas, images, video references, storyboards, and keyframes. Use for Kling 4.0 and Flash mode selection, reference roles, timed direction, dialogue, subtitles, and footage-editing prompts. Prompt authoring does not itself generate videos or execute APIs.
+license: Apache-2.0
 metadata:
   author: "Adapted from aedev-tools / Michael Nahmias"
-  version: "1.1.1"
+  version: "1.1.2"
 ---
 
 # Kling AI Video Prompting
@@ -20,7 +21,7 @@ For an unspecified Kling model, use this skill's 4.0 scope and briefly disclose 
 - **Keyframes:** images defining required visual states at the beginning, end, or intermediate timeline positions. This entry accepts keyframe images, without additional reference-asset uploads.
 - **4.0 Flash:** consider for rapid exploration, but do not apply the full model's duration, resolution, or keyframe features to it.
 
-Omni can also accept textual instructions assigning first- or last-frame roles to images. Do not equate those instructions with the separate Keyframes entry's timeline upload controls or combine both entries' controls in one task.
+The guide says Omni also offers keyframe-to-video, but it documents the first-, last-, and middle-frame prompt formats under the Keyframes entry, and describes only that entry as giving pixel-level keyframe consistency. The two entries cannot be combined in one generation task; do not mix their controls.
 
 ## Read only the relevant references
 

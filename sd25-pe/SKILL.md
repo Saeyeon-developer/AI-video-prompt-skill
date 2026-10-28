@@ -1,6 +1,7 @@
 ---
 name: sd25-pe
 description: Write and refine Seedance 2.5 video prompts from scene ideas, stories, and image/video/audio references, including keyframes, storyboards, blockouts, edits, and extensions. Use for prompt authoring, not service operation or API troubleshooting.
+license: Apache-2.0
 ---
 
 # Seedance 2.5 Prompt Writing
