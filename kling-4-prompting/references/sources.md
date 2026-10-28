@@ -4,7 +4,7 @@
 
 - Repository: [aedev-tools/kling-4-prompting-skill](https://github.com/aedev-tools/kling-4-prompting-skill).
 - Base commit: [f3808475a3293aa5885d53899b1ca99f41f530d7](https://github.com/aedev-tools/kling-4-prompting-skill/commit/f3808475a3293aa5885d53899b1ca99f41f530d7), dated 2026-10-16.
-- Original author: Michael Nahmias / aedev-tools. The original MIT notice is preserved in [LICENSE](../LICENSE).
+- Original author: Michael Nahmias / aedev-tools. This adaptation is distributed under Apache-2.0 ([LICENSE](../LICENSE)); the upstream MIT copyright and permission notice is retained in [NOTICE](../NOTICE).
 - Base files: the upstream SKILL.md and references/examples.md, references/references-and-editing.md, references/shots-and-keyframes.md, and references/sources.md.
 
 Inherited practices include concise treatment of simple requests, preservation of creative intent and exact dialogue, specific roles for each asset, targeted edit scope, shot continuity and timing checks, focused revisions after failures, and a copyable prompt as the primary output.

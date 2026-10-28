@@ -1,6 +1,7 @@
 ---
 name: wan3-prompt-writing
 description: Write and refine Wan 3.0 prompts from scene ideas and image/video references, including text-to-video, image-to-video, sound, and multi-shot narratives. Use for prompt authoring, not operating a video-generation service.
+license: Apache-2.0
 ---
 
 # Wan 3.0 Prompt Writing

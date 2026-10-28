@@ -1,6 +1,7 @@
 ---
 name: blender-previs-to-video
 description: Analyze reference video and build or revise primitive Blender previs for AI video camera, motion and contact control; compare generated results and prepare a reference handoff. Use for previs-driven video work, not generic Blender modeling or a model-specific prompt-only request.
+license: Apache-2.0
 ---
 
 # Blender Previs to AI Video

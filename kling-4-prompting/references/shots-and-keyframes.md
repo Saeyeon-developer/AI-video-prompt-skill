@@ -35,7 +35,7 @@ Connect each actual supplied image to a time and role once the mapping is confir
 
 Keyframes accepts up to 10 images. After upload, the aspect ratio follows the first keyframe; resolve conflicts with the intended output ratio or cropping. If the provider lacks timestamp controls, distinguish timing written in a prompt from precise timeline controls.
 
-Illustrative confirmed mapping: @Image1 is a closed gift box and @Image2 is the open box. Eight-second example:
+Illustrative confirmed mapping: @Image1 is a closed gift box and @Image2 is the open box. This eight-second example uses Omni Reference's textual first/last-frame roles. In the Keyframes entry, place the two images with its timeline controls instead and write the prompt for the motion between those states, using only the image labels that interface actually shows.
 
 ~~~text
 Use @Image1 as the first frame and @Image2 as the last frame. Show the same gift box on the same table in a fixed composition slightly above eye level. One continuous shot.

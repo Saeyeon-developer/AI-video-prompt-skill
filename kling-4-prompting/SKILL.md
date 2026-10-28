@@ -1,6 +1,7 @@
 ---
 name: kling-4-prompting
 description: Write, revise, or troubleshoot English Kling AI video prompts from scene ideas, images, video references, storyboards, and keyframes. Use for Kling 4.0 and Flash mode selection, reference roles, timed direction, dialogue, subtitles, and footage-editing prompts. Prompt authoring does not itself generate videos or execute APIs.
+license: Apache-2.0
 metadata:
   author: "Adapted from aedev-tools / Michael Nahmias"
   version: "1.1.1"
