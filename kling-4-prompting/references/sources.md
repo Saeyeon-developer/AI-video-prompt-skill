@@ -38,7 +38,7 @@ Inherited practices include concise treatment of simple requests, preservation o
 
 ## Adaptation choices
 
-This derivative adds explicit input-limit tables and over-limit examples, verified upload-ID handling, dialogue and subtitle guidance, English examples, and Codex interface metadata. These are workflow choices, not measured performance findings.
+This derivative adds explicit input-limit tables and over-limit examples, verified upload-ID handling, multi-view sheet handling, dialogue and subtitle guidance, English examples, and Codex interface metadata. These are workflow choices, not measured performance findings.
 
 All skill instructions and references are written in English, and the final copyable video prompt uses English direction regardless of the conversation language. Exact dialogue, subtitles, signs, labels, names, and other intentional visual copy retain their requested content language. Explanations outside the prompt may follow the conversation language. The English-output convention is a library convention, not a claim that Kling only accepts English or that English is proven superior.
 
