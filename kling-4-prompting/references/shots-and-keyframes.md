@@ -4,7 +4,7 @@ Retains the upstream skill's timing and continuity checks, supplemented by offic
 
 ## Mode and timing
 
-Omni Reference combines assets to guide appearance, action, camera movement, and other attributes. Images can also be assigned first- or last-frame roles in the prompt. Keyframes is a separate entry that places image states at particular timeline positions. Distinguish a reference for a desired look from a required visual state at a specified time.
+Omni Reference combines assets to guide appearance, style, action, and camera movement. Section 2.1 says keyframe-to-video is also available through Omni, but the guide documents the first-, last-, and middle-frame prompt formats only under the Keyframes entry (3.2). It describes that entry as keeping the familiar first-frame and first-and-last-frame Image-to-Video workflow with pixel-level keyframe consistency, and as controlling where key moments fall on the timeline. The two entries cannot be combined in one task. Distinguish a reference for a desired look from a required visual state at a specified time.
 
 If a request combines exact intermediate frames with video-motion references, do not claim both entries' upload controls can be combined. Check the actual interface or propose a suitable alternative: describe the motion in words for Keyframes, accept less precise timing in Omni, or split the work into separate tasks. Do not silently discard an important requirement.
 
@@ -26,16 +26,16 @@ Audio: beans tapping wood, coffee pouring, and a distant bird. No background mus
 
 ## Image states and transitions
 
-Connect each actual supplied image to a time and role once the mapping is confirmed. First, last, and middle images are required states rather than mood boards. If an image is missing, identify it as an asset to prepare, not an existing upload.
+The Keyframes entry supports first frames, last frames, start-and-last frames, and middle frames at any timeline position: set the required moments as keyframes, then describe the actions and transitions between them. Connect each actual supplied image to a time and role once the mapping is confirmed. First, last, and middle images are required states rather than mood boards. If an image is missing, identify it as an asset to prepare, not an existing upload. The guide's formats:
 
-- First frame: begin from @Image1 and describe what moves next.
-- First and last frames: design the movement, action, or transformation from @Image1 to @Image2.
-- Last frame only: establish @Image1 as the endpoint and describe how the preceding sequence reaches it.
-- Middle frames: assign each image a time and state, with action and camera direction leading to the next state.
+- First frame: "Use @Image1 as the first frame," then describe what happens next.
+- First and last frames: "Use @Image1 as the first frame and @Image2 as the last frame," then describe the process in between.
+- Last frame only: "Use @Image1 as the last frame," then describe what happens before it.
+- Middle frames: one entry per keyframe in the form `X–Y sec | Keyframe 1: …`, stating what appears at that point and how the camera reaches it.
 
-Keyframes accepts up to 10 images. After upload, the aspect ratio follows the first keyframe; resolve conflicts with the intended output ratio or cropping. If the provider lacks timestamp controls, distinguish timing written in a prompt from precise timeline controls.
+Keyframes accepts up to 10 images. After upload, the aspect ratio follows the first keyframe; resolve conflicts with the intended output ratio or cropping. The guide says keyframes define the visuals at specific timestamps but does not describe the control that places them or how the entry numbers its images: the format templates use @Image1 and @Image2, while its middle-frame example cites labels such as "Image Node_23". Use the labels the interface actually shows. If timestamps cannot be set in the interface, distinguish timing written in the prompt from precise timeline placement.
 
-Illustrative confirmed mapping: @Image1 is a closed gift box and @Image2 is the open box. This eight-second example uses Omni Reference's textual first/last-frame roles. In the Keyframes entry, place the two images with its timeline controls instead and write the prompt for the motion between those states, using only the image labels that interface actually shows.
+Illustrative confirmed mapping: in the Keyframes entry, @Image1 is a closed gift box set as the first frame and @Image2 is the open box set as the last frame. This eight-second example follows the guide's first-and-last-frame format from section 3.2; substitute the labels the interface shows. The guide gives no separate Omni wording for keyframe-to-video, so reusing this format in Omni is an unverified adaptation, and Omni is not described as giving the Keyframes entry's pixel-level keyframe consistency.
 
 ~~~text
 Use @Image1 as the first frame and @Image2 as the last frame. Show the same gift box on the same table in a fixed composition slightly above eye level. One continuous shot.
