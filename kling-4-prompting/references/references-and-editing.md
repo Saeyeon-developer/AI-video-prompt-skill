@@ -6,6 +6,8 @@ Extends the upstream skill's reference-role separation and edit-scope guidance. 
 
 Inspect accessible media and identify whether it contributes identity, clothing, product geometry, spatial layout, action, camera path, pacing, style, or voice. If inspection is unavailable, rely explicitly on the user's description. Limit the scope so a background reference does not also supply characters and a camera reference does not accidentally supply the product.
 
+A character or product sheet showing several views, such as front, side, and back, defines one subject, not several. State that its views jointly define that single subject, take only the design from it, and exclude the sheet's plain background and side-by-side layout so the subject appears once. Do not map one subject's sheet to two simultaneous identities unless duplicates are requested.
+
 In Omni Reference, assets are numbered automatically in upload order, such as @Image1, @Image2, and @Video1. Do not assume chat attachment order matches the Kling interface. The guide's editing examples refer to an element as @Element1 but do not say how elements are numbered; confirm the label the interface shows. The guide shows no prompt label for voice profiles; use only a label the interface provides, and do not invent syntax such as @Voice1. If an asset has an ID but no stated role, the guide warns that the model infers its use, which makes results less predictable.
 
 Once the mapping is confirmed, assign roles in short sentences or a table and include necessary roles inside the copyable English prompt. A mapping outside the prompt alone is insufficient when the model needs those instructions. Resolve conflicting references for the same attribute by identifying which one takes priority.

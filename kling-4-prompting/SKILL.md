@@ -4,7 +4,7 @@ description: Write, revise, or troubleshoot English Kling AI video prompts from 
 license: Apache-2.0
 metadata:
   author: "Adapted from aedev-tools / Michael Nahmias"
-  version: "1.1.2"
+  version: "1.1.3"
 ---
 
 # Kling AI Video Prompting
@@ -25,7 +25,7 @@ The guide says Omni also offers keyframe-to-video, but it documents the first-, 
 
 ## Read only the relevant references
 
-- Multiple assets, recreation, or footage edits: [references and editing](references/references-and-editing.md).
+- Multiple assets, multi-view character or product sheets, recreation, or footage edits: [references and editing](references/references-and-editing.md).
 - Multiple shots, first/last/middle images, or loops: [shots and keyframes](references/shots-and-keyframes.md).
 - Duration, mode, file, or asset limits: [capabilities and input limits](references/capabilities.md).
 - Illustrations or a failed prompt: the relevant section of [examples and revisions](references/examples.md).
