@@ -4,12 +4,12 @@
 
 A library of agent skills for AI video production. It covers ad reference analysis, Blender previs, prompt writing for several video models, supporting still-image work, and local video metadata cleanup. The skills are plain Markdown instructions plus a few helper scripts. They work with Claude Code, Codex and other agents that can read files.
 
-The prompt skills **write prompts and plans; they do not call any generation API**. You submit prompts to Seedance, MiniMax, Wan, Kling or GPT Image yourself, or through a separate tool you choose. `video-scrub` processes existing local media with FFmpeg and verifies known metadata residues.
+The prompt skills **write prompts and plans; they do not call any generation API**. You submit prompts to Seedance, MiniMax, Wan, Kling, Veo or GPT Image yourself, or through a separate tool you choose. `video-scrub` processes existing local media with FFmpeg and verifies known metadata residues.
 
 ## For AI agents reading this repository
 
 1. Read [AGENTS.md](AGENTS.md). It explains how to select and load skills.
-2. This repository holds **nine separate skills**, not one. Each entrypoint is `<skill>/SKILL.md`.
+2. This repository holds **ten separate skills**, not one. Each entrypoint is `<skill>/SKILL.md`.
 3. If the right skill is unclear or the task spans stages, start with [ai-video-production](ai-video-production/SKILL.md). The [skill catalog](ai-video-production/references/skill-catalog.md) is the source of truth for routing.
 4. Load only the selected skill and the references it links to for the current step.
 
@@ -25,6 +25,7 @@ The prompt skills **write prompts and plans; they do not call any generation API
 | [h3-prompt-writing](h3-prompt-writing/SKILL.md) | **Video** prompt: MiniMax H3 | Text, first/last frame and full image/video/audio reference prompts with H3 fields and tags | English |
 | [wan3-prompt-writing](wan3-prompt-writing/SKILL.md) | **Video** prompt: Wan 3.0 | Text-to-video, image-to-video, reference, sound and multi-shot prompts | English |
 | [kling-4-prompting](kling-4-prompting/SKILL.md) | **Video** prompt: Kling 4.0 / Flash | Scene and reference prompts, mode selection, keyframes, dialogue, subtitles, footage edits and prompt troubleshooting | English |
+| [veo3-prompt-writing](veo3-prompt-writing/SKILL.md) | **Video** prompt: Google Veo 3.1 | Text/image prompts, first/last frames, subject references, extension, dialogue, sound, timed shots and prompt troubleshooting | English |
 | [gpt-image-25](gpt-image-25/SKILL.md) | **Still image** prompt and settings: GPT Image 2.5 | Product sheets, backgrounds, keyframes, reference compositing and edits. **Not a video skill** | Mostly Korean |
 
 Agents can apply skills whose instructions are written in Korean to requests in any language. Every skill writes its final copyable prompts in English, whatever the request language; spoken dialogue and on-screen or rendered text stay in the language they must be heard or seen in.
@@ -33,7 +34,7 @@ Agents can apply skills whose instructions are written in Korean to requests in 
 
 1. **Analyze** a reference ad with `video-ad-analyzer`, or **block out** camera and motion with `blender-previs-to-video`.
 2. **Prepare still assets** (product sheets, backgrounds, keyframes) with `gpt-image-25` when the video model needs appearance references.
-3. **Write the video prompt** with the chosen model's skill: `sd25-pe`, `h3-prompt-writing`, `wan3-prompt-writing` or `kling-4-prompting`.
+3. **Write the video prompt** with the chosen model's skill: `sd25-pe`, `h3-prompt-writing`, `wan3-prompt-writing`, `kling-4-prompting` or `veo3-prompt-writing`.
 4. **Submit** the prompt and references yourself.
 5. **Review** the result against the previs or reference with `blender-previs-to-video`, then fix the previs, asset or prompt that caused the problem.
 6. **Clean metadata**, when requested, with `video-scrub` before sharing an existing local video. It can also be used alone; passing checks do not guarantee complete anonymity or watermark removal.
@@ -65,7 +66,7 @@ Windows (PowerShell, junctions):
 $repo = 'C:/path/to/video-skill'
 $dest = Join-Path $HOME '.claude/skills'
 New-Item -ItemType Directory -Force $dest | Out-Null
-foreach ($s in 'ai-video-production','video-ad-analyzer','blender-previs-to-video','sd25-pe','h3-prompt-writing','wan3-prompt-writing','kling-4-prompting','gpt-image-25','video-scrub') {
+foreach ($s in 'ai-video-production','video-ad-analyzer','blender-previs-to-video','sd25-pe','h3-prompt-writing','wan3-prompt-writing','kling-4-prompting','veo3-prompt-writing','gpt-image-25','video-scrub') {
   New-Item -ItemType Junction -Path (Join-Path $dest $s) -Target (Join-Path $repo $s)
 }
 ```
@@ -76,7 +77,7 @@ macOS / Linux (symlinks):
 repo=/path/to/video-skill
 dest="$HOME/.claude/skills"
 mkdir -p "$dest"
-for s in ai-video-production video-ad-analyzer blender-previs-to-video sd25-pe h3-prompt-writing wan3-prompt-writing kling-4-prompting gpt-image-25 video-scrub; do
+for s in ai-video-production video-ad-analyzer blender-previs-to-video sd25-pe h3-prompt-writing wan3-prompt-writing kling-4-prompting veo3-prompt-writing gpt-image-25 video-scrub; do
   ln -s "$repo/$s" "$dest/$s"
 done
 ```
@@ -85,7 +86,7 @@ done
 
 **Other hosts:** follow the host's skill registration method, or give the agent the path to the relevant `SKILL.md`.
 
-You can install a subset. The router alone does not include the other skills' capabilities. For ad analysis, install `video-ad-analyzer`; to get final Seedance prompts as well, also install `sd25-pe`. For Kling prompt writing, `kling-4-prompting` can be used alone; keep its license and supporting files. For metadata cleanup, `video-scrub` alone is sufficient; keep its license and supporting files.
+You can install a subset. The router alone does not include the other skills' capabilities. For ad analysis, install `video-ad-analyzer`; to get final Seedance prompts as well, also install `sd25-pe`. For Kling or Veo prompt writing, `kling-4-prompting` or `veo3-prompt-writing` can each be used alone; keep the selected skill's license, notices and supporting files. For metadata cleanup, `video-scrub` alone is sufficient; keep its license and supporting files.
 
 ## Requirements by task
 
@@ -146,3 +147,5 @@ Licensed under the [Apache License 2.0](LICENSE). Vendor guides and third-party 
 `kling-4-prompting` is adapted from [aedev-tools/kling-4-prompting-skill](https://github.com/aedev-tools/kling-4-prompting-skill). It is distributed here under Apache-2.0, with a license copy in the skill folder for independent distribution; the upstream MIT copyright and permission notice is retained in its [NOTICE](kling-4-prompting/NOTICE). [Source notes](kling-4-prompting/references/sources.md) record the pinned revision and adaptations.
 
 `video-scrub` is adapted from [eternityspring/reelbench-skills](https://github.com/eternityspring/reelbench-skills) under Apache-2.0. Its [source notes](video-scrub/references/sources.md) record the pinned revision and adaptations; a license copy is included in the skill folder for independent distribution.
+
+`veo3-prompt-writing` adapts the Veo generation guidance in Google's [genmedia-video-editor](https://github.com/GoogleCloudPlatform/genmedia-creative-studio/tree/main/experiments/mcp-genmedia/skills/genmedia-video-editor) under Apache-2.0, together with Google's official prompting guide. It is a prompt-only derivative with no generation-server dependency. Its [source notes](veo3-prompt-writing/references/sources.md) record the pinned upstream revision, official documentation, conflicts and adaptations; keep its bundled license and notice for independent distribution.

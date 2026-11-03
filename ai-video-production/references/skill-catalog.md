@@ -12,6 +12,7 @@ This is the maintained routing index for the `video-skill` workspace. Select by 
 | [h3-prompt-writing](../../h3-prompt-writing/SKILL.md) | **Video** prompt: MiniMax H3 | H3 text/keyframe modes or full image/video/audio reference prompts | Mode-specific fields, native subject/media labels and retention relationships; no service operation |
 | [wan3-prompt-writing](../../wan3-prompt-writing/SKILL.md) | **Video** prompt: Wan 3.0 | Wan text-to-video, image-to-video, references, sound or multi-shot prompts | Wan prompt and applicable reference identifiers; no service operation |
 | [kling-4-prompting](../../kling-4-prompting/SKILL.md) | **Video** prompt: Kling 4.0 / Flash | Kling scene/image/video/storyboard prompts, reference roles, keyframes, dialogue, subtitles, footage edits or prompt troubleshooting | English prompt and applicable mode/settings notes; uses the Kling writer after shared analysis, previs or still-asset preparation. No video generation, API operation or automatic substitution for other Kling versions |
+| [veo3-prompt-writing](../../veo3-prompt-writing/SKILL.md) | **Video** prompt: Google Veo 3.1 | Veo text/image prompts, first/last frames, ingredients or subject references, extension, dialogue, sound, timed shots or prompt troubleshooting | English prompt, reference-role mapping and applicable settings notes; receives shared analysis, previs direction or still assets when needed. No generation, Google Cloud operation or FFmpeg editing; verify the selected tier/interface's controls |
 | [gpt-image-25](../../gpt-image-25/SKILL.md) | **Still image**: GPT Image 2.5 | Image-generation/edit prompts, product sheets, backgrounds, keyframes, visible text or reference image edits | Still-image prompt/settings; actual image work only when requested and supported by available tools. Never a video writer |
 
 `SD` means Seedance only when the conversation establishes that meaning. In another context it may refer to a different model; resolve a material ambiguity rather than silently routing it. `H3` here means MiniMax H3, not every product offered by a similarly named platform.
@@ -31,12 +32,14 @@ This is the maintained routing index for the `video-skill` workspace. Select by 
 | “H3에서 참조 매핑 후 Subject/Video를 어떻게 쓰지?” | `h3-prompt-writing`, relevant native syntax/reference guide |
 | “Kling 4.0에서 이 사진을 움직이는 영상 프롬프트로 써줘” | `kling-4-prompting`; use the supplied image and preserve its intended attributes; no automatic generation |
 | “Kling으로 이 광고의 제품과 대사를 바꿔 재창작할 프롬프트를 써줘” | `video-ad-analyzer` for ad evidence and adaptation, then `kling-4-prompting` for the selected Kling model; no automatic generation |
+| “Veo로 이 제품 사진을 움직이는 영상 프롬프트로 써줘” | `veo3-prompt-writing`; determine whether the photo is an opening frame or a subject reference; no automatic generation |
+| “Veo 3.1용으로 이 광고의 제품과 한국어 대사를 바꿔 재창작할 프롬프트를 써줘” | `video-ad-analyzer` for ad evidence and adaptation, then `veo3-prompt-writing` for the selected Veo mode; keep intended speech in Korean |
 | “같은 프리비즈를 SD, H3, Wan용으로 각각 작성해줘” | Shared reference-role brief, then each of the three requested video writers |
 | “모델은 나중에 정하고 우선 프리비즈부터” | Blender workflow; do not block on model selection |
 
 ## Distribution and supporting files
 
-Production routing and installation use the nine active skill directories above. Keep them as siblings to preserve the relative links in this catalog. Copy each complete folder, including its supporting resources; copying only `SKILL.md` is insufficient. A router installed alone can use skills available by the same identifiers through the host, but does not include their capabilities itself. `video-scrub` and `kling-4-prompting` can each be distributed and used alone; keep each one's bundled license, notices and source notes with it.
+Production routing and installation use the ten active skill directories above. Keep them as siblings to preserve the relative links in this catalog. Copy each complete folder, including its supporting resources; copying only `SKILL.md` is insufficient. A router installed alone can use skills available by the same identifiers through the host, but does not include their capabilities itself. `video-scrub`, `kling-4-prompting` and `veo3-prompt-writing` can each be distributed and used alone; keep each one's bundled license, notices and source notes with it.
 
 `README.md` is the human entrypoint and setup guide. Root `AGENTS.md` provides workspace instructions. A selected skill's `references/` holds conditional working guidance; `references/sources.md` holds attribution and scope. None of these imply that every file should be loaded for every request.
 
