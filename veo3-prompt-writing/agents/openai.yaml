@@ -1,0 +1,4 @@
+interface:
+  display_name: "Veo 3.1 Prompt Writing"
+  short_description: "Write Veo video prompts with motion, references, and sound"
+  default_prompt: "Use $veo3-prompt-writing to turn my scene or reference images into a Veo 3.1 prompt, preserving the intended language of speech and visible text."
