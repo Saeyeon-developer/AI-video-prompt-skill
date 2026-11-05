@@ -2,6 +2,8 @@
 
 > [English README](README.md) is the maintained version. This Korean guide may lag behind it.
 
+**GPT Image 2.6 업데이트.** [정지 이미지 스킬](gpt-image-25/SKILL.md)에 GPT Image 2.6 프롬프트 가이드를 반영했습니다. Flare와 Sunburst는 OpenAI API에서 지정할 수 있습니다.
+
 영상 제작에 필요한 광고 레퍼런스 분석, 프리비즈, 모델별 영상 프롬프트, 보조 이미지 작업과 로컬 영상 메타데이터 정리를 제공하는 통합 스킬 모음입니다. Git clone 또는 ZIP으로 받은 파일만으로 지침을 사용할 수 있습니다. 실행 도구는 아래의 작업별 요구사항에 따라 별도로 준비합니다.
 
 **AI가 처음 읽을 문서:** [AGENTS.md](AGENTS.md). **어떤 스킬을 쓸지 판단할 진입점:** [ai-video-production](ai-video-production/SKILL.md). 전체 분류와 사용 조건은 [스킬 목록](ai-video-production/references/skill-catalog.md)이 기준입니다.
@@ -19,7 +21,7 @@
 | 영상 프롬프트 | [wan3-prompt-writing](wan3-prompt-writing/SKILL.md) | Wan 3.0의 T2V·I2V·참조·오디오·멀티샷 프롬프트 |
 | 영상 프롬프트 | [kling-4-prompting](kling-4-prompting/SKILL.md) | Kling 4.0·Flash 모드 선택, 참조·키프레임·대사·자막·기존 영상 편집 프롬프트와 문제 수정 |
 | 영상 프롬프트 | [veo3-prompt-writing](veo3-prompt-writing/SKILL.md) | Google Veo 3.1의 텍스트·이미지·첫/끝 프레임·피사체 참조·연장 프롬프트, 대사·음향·타임스탬프 연출과 문제 수정 |
-| **정지 이미지** | [gpt-image-25](gpt-image-25/SKILL.md) | GPT Image 2.5용 이미지 생성·편집 프롬프트와 설정; 제품 시트·배경·키프레임 준비 |
+| **정지 이미지** | [gpt-image-25](gpt-image-25/SKILL.md) | ChatGPT 웹·Codex용 이미지 생성·편집 프롬프트와 GPT Image 2.6 API 설정. 제품 시트·배경·키프레임 준비 |
 
 모든 스킬은 요청 언어와 관계없이 최종 프롬프트를 영어로 작성합니다. 단, 대사와 화면·이미지에 보일 문구는 영어로 번역하지 않고 실제로 들리거나 보일 언어(예: 한국어 대사는 한국어) 그대로 씁니다.
 

@@ -1,44 +1,39 @@
 # 모델 선택과 요청 설정
 
-근거: 첨부 문서의 Choose a model, Model parameters, Migrate an existing workflow. 2026-09-09 기준 자료이며 최신 가용성·요금·엔드포인트 스키마는 [공식 이미지 생성 가이드](https://developers.openai.com/api/docs/guides/image-generation)에서 확인한다.
+아래 설정은 OpenAI Image API 기준이다. Flare와 Sunburst는 지원되는 API 요청에서 `model`로 지정한다. ChatGPT 웹과 Codex 내장 이미지 생성에는 두 모델을 지정하는 옵션이 없다. [Image API 모델 필드](https://developers.openai.com/api/reference/resources/images/methods/generate), [ChatGPT·Codex 이미지 생성](https://learn.chatgpt.com/docs/image-generation)
 
-## GPT Image 2.5 설정
+## GPT Image 2.6 설정
 
 | 필드 | 값 또는 제약 |
 | --- | --- |
-| `model` | `gpt-image-2.5-flare`, `gpt-image-2.5-sunburst` |
-| `quality` | `auto`(문서상 기본), `low`, `medium`, `high`, `xhigh`, `max` |
-| `size` | `auto` 또는 아래 조건을 모두 만족하는 `WIDTHxHEIGHT` |
+| `model` | `gpt-image-2.6-flare`, `gpt-image-2.6-sunburst` |
+| `quality` | `auto`, `low`, `medium`, `high`, `xhigh`, `max`. 질감과 작은 글자 등 렌더링 세부 묘사 조절 |
+| `complexity` | `low`, `medium`, `high`. 두 모델 모두 생략 시 `high`. 렌더링 전 구도와 요소 배치 계획 조절 |
+| `size` | `auto` 또는 지원되는 `WIDTHxHEIGHT`. 양쪽 변은 16의 배수, 화면 비율은 1:3부터 3:1까지 |
 | `background` | `auto`, `opaque`, `transparent` |
-| `output_format` | `png`, `jpeg`, `webp`; 투명 출력은 PNG 또는 WebP |
-| `output_compression` | JPEG·WebP 전용. PNG에서는 생략. 수치 범위는 현재 API 스키마 확인 |
+| `output_format` | `png`, `jpeg`, `webp`. 새 정지 이미지 생성에서 `svg`도 지원 |
+| `output_compression` | JPEG·WebP 전용, 0–100 |
+| `markup` | 편집할 영역을 표시하는 투명 PNG 오버레이. [마크업 편집](editing.md#마크업으로-편집-영역-지정) 참조 |
 
-명시 크기는 양쪽 변이 각각 16의 배수이고 3,840 이하여야 한다. 긴 변/짧은 변은 최대 3, 전체 픽셀 수는 655,360 이상 8,294,400 이하이다. **3,686,400픽셀 초과는 실험적 출력**이다. 4K가 불가능하다는 오래된 가정을 적용하지 않되 실험적 상태를 일반 출력과 구분한다.
+2.6 편집에서 `input_fidelity`는 생략한다. 2.6은 `reasoning.summary`를 지원하지 않는다. [공식 프롬프트 가이드](https://developers.openai.com/api/docs/guides/image-prompting)
 
-| 목적 | 유효한 예 | 상태 |
-| --- | --- | --- |
-| 정사각형 | `1024x1024` | 일반 |
-| 가로 / 세로 | `1536x1024` / `1024x1536` | 일반 |
-| 16:9 슬라이드 | `1536x864` | 일반 |
-| 2K 가로 / 세로 | `2048x1152` / `1152x2048` | 일반 |
-| 2K 정사각형 | `2048x2048` | 실험적: 4,194,304픽셀 |
-| 4K 가로 / 세로 | `3840x2160` / `2160x3840` | 실험적: 8,294,400픽셀 |
+## 크기와 로컬 검산
 
-예를 들어 `1920x1080`은 높이가 16의 배수가 아니다. 같은 16:9인 `2048x1152` 생성 후 정확한 최종 규격으로 리사이즈하는 방법을 제안할 수 있다. 리사이즈를 실제로 수행하지 않았다면 최종 규격 파일을 제공했다고 말하지 않는다.
+가이드의 2.6 크기 예는 정사각형 `1024x1024`, 가로 `1536x1024`, 세로 `1024x1536`, 16:9 `1536x864`다. 다른 사용자 지정 크기의 허용 여부와 픽셀 한도는 대상 모델과 엔드포인트에서 확인한다. 예를 들어 정확히 `1920x1080`이 필요하면 같은 비율의 `1536x864`로 생성한 뒤 리사이즈하는 방법을 제안할 수 있다. 전달할 때 생성 크기와 최종 파일 크기를 구분한다.
 
-검산은 표준 라이브러리만 필요한 로컬 도구로 할 수 있다. 아래 경로는 스킬 폴더 기준이다.
+아래 명령은 스킬 폴더 기준이다. 검사기는 Flare와 Sunburst에 공통인 규칙을 적용한다. 로컬 검사에서는 `--model`을 생략할 수 있다. 실제 API 요청에는 사용할 모델을 지정한다.
 
 ```sh
-python scripts/check_settings.py --size 3840x2160 --quality high --background transparent --output-format png
+python scripts/check_settings.py --model gpt-image-2.6-sunburst --size 1536x864 --quality high --complexity high --background transparent --output-format png
 ```
 
-도구는 문서 기반 설정의 일관성만 검사한다. 계정 접근, 서비스 가용성, 요청 전체 스키마, 실제 출력 품질을 확인하거나 API를 호출하지 않는다.
+검사기는 문서에 명시된 로컬 설정 조건을 검산한다. 계정 접근과 최종 요청의 유효성은 실행 환경에서 확인한다.
 
 ## 품질 선택
 
-일상 요청은 `auto` 또는 `medium`을 출발점으로 삼을 수 있다. 작은 글자·복잡한 라벨·교육 자료는 `high`를 우선 검토한다. 이는 작업별 권장이지 필수값이 아니다. 높은 단계는 실패한 품질 요구를 실제로 개선할 때만 쓴다.
+일상 요청은 `auto` 또는 `medium`에서 시작할 수 있다. 작은 글자나 복잡한 라벨은 `medium`과 `high`의 가독성을 비교한다. `xhigh`나 `max`는 충족하지 못한 렌더링 요구를 개선하는지 확인할 때 사용한다.
 
-비교에서는 모델을 먼저 정하고 프롬프트·입력 이미지·크기·명시 품질·형식을 고정한다. 같은 품질 라벨이 모델 간 같은 결과나 시간을 뜻하지 않는다. 품질이 통과하면 낮은 단계와 Flare를 검토한다. 빠르다는 이유만으로 더 저렴하다고 단정하지 않는다.
+배치와 요소 간 관계를 비교할 때는 `quality`를 고정하고 `complexity`만 바꾼다. 조명·질감·글자 선명도를 비교할 때는 `complexity`를 고정하고 `quality`만 바꾼다. 프롬프트, 입력 이미지, 크기와 파일 형식은 비교 중에 유지한다.
 
 ## 투명 배경
 
@@ -46,13 +41,17 @@ python scripts/check_settings.py --size 3840x2160 --quality high --background tr
 
 알파 채널 존재만으로 성공 판정하지 않는다. 배경 영역에 실제 투명 픽셀이 있는지, 머리카락·유리·반투명 그림자·제품 경계가 자연스러운지 확인한다. 흰 배경이나 그려진 체크무늬는 투명이 아니다. 사용자가 JPEG와 투명을 동시에 요구하면 형식 충돌을 설명한다.
 
-## API 연결과 구형 예제
+## SVG 생성
 
-Images API에서는 새 생성에 `client.images.generate`, 입력 이미지 편집에 `client.images.edit`를 사용한다. 아래는 **API 호출 코드가 아닌 설정 예**다. 도구가 해당 필드를 노출하는 경우에만 전달한다.
+벡터 경로가 필요한 로고·아이콘은 2.6의 `POST /v1/images/generations`에서 `output_format="svg"`, `n=1`을 사용한다. 투명한 영역이 필요하면 `background="transparent"`를 지정한다. `stream`, `partial_images`, `output_compression`, `prompt_rewriter`는 생략한다. `data[0].b64_json`을 디코딩해 `.svg`로 저장하고 벡터 경로와 렌더링을 확인한다. 편집 입력에는 지원되는 래스터 형식을 사용한다. 공식 가이드의 애니메이션 GIF 예시는 이 스킬의 정지 이미지 범위 밖이다.
+
+## API 요청 설정 예
+
+새 생성은 `client.images.generate`, 입력 이미지 편집은 `client.images.edit`를 사용한다. 아래는 투명 래스터 출력을 위한 필드 예다. 사용 중인 SDK나 도구가 해당 필드를 노출하는 경우에 전달한다.
 
 ```json
 {
-  "model": "gpt-image-2.5-sunburst",
+  "model": "gpt-image-2.6-sunburst",
   "quality": "high",
   "size": "1536x1024",
   "background": "transparent",
@@ -60,16 +59,12 @@ Images API에서는 새 생성에 `client.images.generate`, 입력 이미지 편
 }
 ```
 
-첨부 문서의 Run a complete example 코드는 `gpt-image-2` 기준이다. 2.5 코드로 소개하려면 모델과 지원 필드를 확인해 바꾼다. 샘플의 `n=4`는 예시 개수이지 기본 생성 개수가 아니다. 여러 변형을 요청받았을 때만 필요한 개수를 사용하고 엔드포인트의 허용 범위를 확인한다.
-
-GPT Image 2에는 `input_fidelity`를 생략하도록 명시되어 있다. 1/1.5에서는 `low`/`high`를 쓰던 필드다. 첨부 2.5 파라미터 표는 이 필드를 명시하지 않으므로 2의 설명을 근거로 2.5의 지원 여부를 단정하거나 `input_fidelity="high"`를 자동 추가하지 않는다. 필요한 경우 현재 스키마를 확인한다. 문서에 없는 `seed`, `negative_prompt`, 단계 수 등의 필드도 만들지 않는다.
-
 ## 기존 워크플로 전환
 
 전환을 요청받았을 때 적용한다. 일반적인 한 장 생성에 성능 실험을 의무화하지 않는다.
 
 1. 대표 프롬프트·참조·현재 설정·통과 결과를 기준선으로 보관한다. 글자, 얼굴, 제품 형상, 투명 소재와 어려운 연속 편집을 포함한다.
-2. GPT Image 2가 이미 요구 품질을 만족하면 Flare부터, 복잡한 요구를 충족하지 못하면 Sunburst부터 비교한다. 첫 비교는 지원되는 기존 설정을 유지한다.
-3. 지시 준수·정체성·형상·문구·불필요한 수정·알파를 평가한다. 사용자 범위와 예산 내에서 반복 결과의 일관성 및 전체 편집 순서도 확인한다.
-4. 품질 통과 후 지연시간을 줄인다. 일반/느린 응답, 실패·재시도, 수용된 이미지당 비용을 기록한다. 품질 단계부터 하나씩 조정하고 프롬프트 변경은 별도로 비교한다.
+2. 속도가 중요하면 Flare, 배치나 정밀 편집이 중요하면 Sunburst부터 시험한다. 첫 비교에는 동일한 프롬프트·참조·크기·품질·형식을 쓰고 `complexity`는 기본값으로 둔다.
+3. 각 편집 결과와 최종 이미지의 문구·배치·정체성·제품 형상·수정 범위·알파를 평가한다.
+4. `quality`와 `complexity`를 한 번에 하나씩 바꿔 통과율과 지연시간을 비교한다. 품질 기준을 충족한 뒤 필요에 따라 같은 설정으로 Flare도 비교한다.
 5. 실제 운영 전환이 요청 범위에 있다면 일부 트래픽부터 확대하고 지원되는 이전 모델의 롤백 경로를 유지한다. 요금과 구형 모델 종료일은 실행 시 [공식 문서](https://developers.openai.com/api/docs/deprecations)에서 재확인한다.

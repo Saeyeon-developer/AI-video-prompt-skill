@@ -2,6 +2,8 @@
 
 [한국어](README.ko.md)
 
+**GPT Image 2.6 update.** The [still-image skill](gpt-image-25/SKILL.md) follows the GPT Image 2.6 prompting guide. Flare and Sunburst are selectable through the OpenAI API.
+
 A library of agent skills for AI video production. It covers ad reference analysis, Blender previs, prompt writing for several video models, supporting still-image work, and local video metadata cleanup. The skills are plain Markdown instructions plus a few helper scripts. They work with Claude Code, Codex and other agents that can read files.
 
 The prompt skills **write prompts and plans; they do not call any generation API**. You submit prompts to Seedance, MiniMax, Wan, Kling, Veo or GPT Image yourself, or through a separate tool you choose. `video-scrub` processes existing local media with FFmpeg and verifies known metadata residues.
@@ -26,7 +28,7 @@ The prompt skills **write prompts and plans; they do not call any generation API
 | [wan3-prompt-writing](wan3-prompt-writing/SKILL.md) | **Video** prompt: Wan 3.0 | Text-to-video, image-to-video, reference, sound and multi-shot prompts | English |
 | [kling-4-prompting](kling-4-prompting/SKILL.md) | **Video** prompt: Kling 4.0 / Flash | Scene and reference prompts, mode selection, keyframes, dialogue, subtitles, footage edits and prompt troubleshooting | English |
 | [veo3-prompt-writing](veo3-prompt-writing/SKILL.md) | **Video** prompt: Google Veo 3.1 | Text/image prompts, first/last frames, subject references, extension, dialogue, sound, timed shots and prompt troubleshooting | English |
-| [gpt-image-25](gpt-image-25/SKILL.md) | **Still image** prompt and settings: GPT Image 2.5 | Product sheets, backgrounds, keyframes, reference compositing and edits. **Not a video skill** | Mostly Korean |
+| [gpt-image-25](gpt-image-25/SKILL.md) | **Still image** prompts for ChatGPT web and Codex, plus GPT Image 2.6 API settings | Product sheets, backgrounds, keyframes, reference compositing and edits | Mostly Korean |
 
 Agents can apply skills whose instructions are written in Korean to requests in any language. Every skill writes its final copyable prompts in English, whatever the request language; spoken dialogue and on-screen or rendered text stay in the language they must be heard or seen in.
 
