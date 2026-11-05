@@ -22,6 +22,18 @@
 
 투명 출력 설정은 [설정 안내](settings.md)를 함께 적용한다. 텍스트 길이가 달라 레이아웃과 가독성이 충돌하면 둘 다 완벽히 보장하지 말고 글자 크기·줄바꿈 등 가능한 조정을 제시한다.
 
+## 마크업으로 편집 영역 지정
+
+비슷한 물체가 여러 개 있거나 말로 위치를 특정하기 어려우면, GPT Image 2.6의 Image API 편집 요청에 `markup`을 사용한다. 첫 번째 입력 이미지와 픽셀 크기가 같은 투명 PNG 위에 원이나 화살표를 표시한다. 멀티파트 `POST /v1/images/edits`에서 원본은 `image`, 표시 레이어는 `markup`으로 따로 전달한다. 추가 입력은 참조 이미지로 사용한다. `mask`와 `prompt_rewriter`는 생략한다. [공식 마크업 편집 안내](https://developers.openai.com/api/docs/guides/image-generation#guide-an-edit-with-markup)
+
+프롬프트에서 표시와 대상의 관계, 바꿀 한 가지 요소, 보존할 주변과 결과에서 표시 제거를 명시한다. 예를 들어 붉은 원이 포장 색만 바꿀 대상을 표시한 경우 아래처럼 쓴다.
+
+```text
+Change the wrapper inside the red circle to matte navy blue. Keep its printed label, creases and position on the shelf. Preserve the surrounding packages and the shelf lighting. Remove the red circle from the final image.
+```
+
+결과에서 표시가 사라졌는지 확인한다. Responses API에서 영역을 지정할 때는 지원되는 마스크를 사용한다.
+
 ## 연속 편집과 캐릭터
 
 직전 결과를 다음 입력으로 실제 전달한다. 도구가 이전 결과를 자동으로 기억한다고 가정하지 않는다. 한 번에 한 가지 수정 목적을 주고 핵심 보존 조건을 다시 쓴다. 새 장면마다 캐릭터 기준 이미지와 얼굴·의상·비례·색상 등 핵심 특징을 재사용한다.
